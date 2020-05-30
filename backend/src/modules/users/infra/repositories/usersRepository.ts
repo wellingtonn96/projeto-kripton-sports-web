@@ -1,6 +1,6 @@
 import { hash, compare } from 'bcryptjs';
 
-import User from '../model/user';
+import User from '../entities/user';
 
 interface IUser {
   name: string;
@@ -19,16 +19,16 @@ class UserRepository {
     return this.users;
   }
 
-  public async create({ name, email, password }: IUser): Promise<User> {
+  public findByEmail(email: string) {
     const userExistis = this.users.find(user => user.email === email);
 
-    if (userExistis) {
-      throw new Error('email alredy existis!');
-    }
+    return userExistis;
+  }
 
+  public create({ name, email, password }: IUser): User {
     const user = new User({ name, email, password });
 
-    user.encryptedPassword = await hash(password, 8);
+    user.encryptedPassword = password;
 
     this.users.push(user);
 
@@ -55,25 +55,6 @@ class UserRepository {
     }
 
     this.users.splice(userIndex, 1);
-  }
-
-  public async validateUser(
-    email: string,
-    password: string
-  ): Promise<User | undefined> {
-    const user = this.users.find(users => users.email === email);
-
-    if (!user) {
-      return undefined;
-    }
-
-    const validPassword = await compare(password, user.encryptedPassword);
-
-    if (!validPassword) {
-      return undefined;
-    }
-
-    return user;
   }
 }
 
