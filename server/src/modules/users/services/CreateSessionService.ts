@@ -1,19 +1,26 @@
 import { sign } from 'jsonwebtoken';
+import { inject, injectable } from 'tsyringe';
 
 import authConfig from '@config/auth';
 
 import AppError from '@shared/errors/AppError';
 
-import { userRepository } from './createUserServices';
+import IUserRepository from '../repositories/IUserRepository';
 
 interface IRequest {
   email: string;
   password: string;
 }
 
+@injectable()
 class CreateSessionService {
-  public excute({ email, password }: IRequest) {
-    const user = userRepository.findByEmail(email);
+  constructor(
+    @inject('UserRepository')
+    private userRepository: IUserRepository
+  ) {}
+
+  public async execute({ email, password }: IRequest) {
+    const user = await this.userRepository.findByEmail(email);
 
     if (!user) {
       throw new AppError('User does not exists');
