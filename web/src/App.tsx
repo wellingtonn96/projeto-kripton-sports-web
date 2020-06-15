@@ -1,7 +1,12 @@
-import React from 'react'
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
-import Signin from './pages/Sigin'
+import Routes from '../src/routes';
 
-const App: React.FC = () => <Signin />;
+const App: React.FC = () => (
+  <BrowserRouter>
+    <Routes />
+  </BrowserRouter>
+);
 
-export default App
+export default App;
