@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { FiLogOut, FiUser, FiLock } from 'react-icons/fi';
+import { Form } from '@unform/web';
 
 import { Container, Content, Background, AnimationForm } from './styles';
 
@@ -9,6 +10,10 @@ import KriptonLogo from '../../assets/kriptonLogo.png';
 import Input from '../../components/input';
 
 const SignUp: React.FC = () => {
+  const handleSubmit = useCallback(data => {
+    console.log(data);
+  }, []);
+
   return (
     <Container>
       <Background>
@@ -16,10 +21,10 @@ const SignUp: React.FC = () => {
       </Background>
       <Content>
         <AnimationForm>
-          <form>
+          <Form onSubmit={handleSubmit}>
             <h1>Criar cadastro</h1>
 
-            <Input type="text" icon={FiUser} name="Nome" placeholder="Nome" />
+            <Input type="text" icon={FiUser} name="name" placeholder="Nome" />
             <Input
               type="email"
               icon={FiUser}
@@ -34,7 +39,7 @@ const SignUp: React.FC = () => {
             />
 
             <button type="submit">Cadastrar</button>
-          </form>
+          </Form>
           <Link to="/">
             <FiLogOut size={20} />
             Voltar para logon

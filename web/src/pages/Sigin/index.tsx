@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { FiLogIn, FiUser, FiLock } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { Container, Content, Background, AnimationForm } from './styles';
+import { Form } from '@unform/web';
 
 import Input from '../../components/input';
 
 import KriptonLogo from '../../assets/kriptonLogo.png';
 
 const Signin: React.FC = () => {
+  const handleSubmit = useCallback(data => {
+    console.log(data);
+  }, []);
   return (
     <Container>
       <Content>
         <AnimationForm>
-          <form>
+          <Form onSubmit={handleSubmit}>
             <h1>Faça seu logon</h1>
 
             <Input
@@ -31,7 +35,7 @@ const Signin: React.FC = () => {
             <button type="submit">Entrar</button>
 
             <a href="/">Esqueci minha senha</a>
-          </form>
+          </Form>
           <Link to="/sigin-up">
             <FiLogIn size={20} />
             Criar conta
