@@ -1,22 +1,49 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { FiLogIn, FiUser, FiLock } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import { Container, Content, Background, AnimationForm } from './styles';
 import { Form } from '@unform/web';
-
+import * as Yup from 'yup';
+import { FormHandles } from '@unform/core';
+import { Container, Content, Background, AnimationForm } from './styles';
 import Input from '../../components/input';
 
 import KriptonLogo from '../../assets/kriptonLogo.png';
+import getValidationErrors from '../../utils/getValidationError';
 
 const Signin: React.FC = () => {
-  const handleSubmit = useCallback(data => {
-    console.log(data);
+  interface SiginInFormData {
+    email: string;
+    password: string;
+  }
+  const formRef = useRef<FormHandles>(null);
+
+  const handleSubmit = useCallback(async (data: SiginInFormData) => {
+    try {
+      formRef.current?.setErrors({});
+
+      const schema = Yup.object().shape({
+        email: Yup.string()
+          .email('Digite um e-mail valido')
+          .required('E-mail Obrigatorio'),
+        password: Yup.string().required('Senha é obrigatória'),
+      });
+
+      await schema.validate(data, { abortEarly: false });
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        const errors = getValidationErrors(err);
+        formRef.current?.setErrors(errors);
+
+        return;
+      }
+      // console.log();
+    }
   }, []);
   return (
     <Container>
       <Content>
         <AnimationForm>
-          <Form onSubmit={handleSubmit}>
+          <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Faça seu logon</h1>
 
             <Input
@@ -30,6 +57,7 @@ const Signin: React.FC = () => {
               name="password"
               icon={FiLock}
               placeholder="Senha"
+              onChange={() => {}}
             />
 
             <button type="submit">Entrar</button>
