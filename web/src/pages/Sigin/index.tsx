@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from 'react';
 import { FiLogIn, FiUser, FiLock } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { FormHandles } from '@unform/core';
@@ -9,6 +9,7 @@ import Input from '../../components/input';
 
 import KriptonLogo from '../../assets/kriptonLogo.png';
 import getValidationErrors from '../../utils/getValidationError';
+import { authenticateUser } from '../../utils/fakeApiUsers';
 
 const Signin: React.FC = () => {
   interface SiginInFormData {
@@ -16,6 +17,7 @@ const Signin: React.FC = () => {
     password: string;
   }
   const formRef = useRef<FormHandles>(null);
+  const history = useHistory();
 
   const handleSubmit = useCallback(async (data: SiginInFormData) => {
     try {
@@ -29,12 +31,14 @@ const Signin: React.FC = () => {
       });
 
       await schema.validate(data, { abortEarly: false });
+
+      await authenticateUser(data);
+
+      history.push('/dashboard');
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErrors(err);
         formRef.current?.setErrors(errors);
-
-        return;
       }
       // console.log();
     }

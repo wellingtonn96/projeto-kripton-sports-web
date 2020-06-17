@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FiLogOut, FiUser, FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
@@ -13,7 +13,10 @@ import Input from '../../components/input';
 
 import getValidationErrors from '../../utils/getValidationError';
 
+import { createUser } from '../../utils/fakeApiUsers';
+
 const SignUp: React.FC = () => {
+  const history = useHistory();
   const formRef = useRef<FormHandles>(null);
 
   const handleSubmit = useCallback(async data => {
@@ -29,13 +32,15 @@ const SignUp: React.FC = () => {
       });
 
       await schema.validate(data, { abortEarly: false });
+
+      await createUser(data);
+
+      history.push('/');
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErrors(err);
 
         formRef.current?.setErrors(errors);
-
-        return;
       }
     }
   }, []);
