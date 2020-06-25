@@ -11,7 +11,7 @@ Sales management application,
 inventory, customer registration and the nutritionist's chart. 
 Technologies will be used in this application: Nodejs, Typescript and Reactjs.</p>
 
-<div style="background: black">
+<div  style="background-color:blue">
   <img src="./assets/Screenshot%20from%202020-06-25%2013-51-59.png" alt="demo-web" height="425">
 </div>
 
