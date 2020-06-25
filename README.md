@@ -47,8 +47,8 @@ This app features all the latest tools and practices in web development!
 ### Getting started the frontend with json-server
 
 1. Move yourself to the web folder: `cd web`
-2. Run `yarn dev:server` to install the dependencies
-3. Run `yarn start` to start the mobile app
+2. Run `yarn dev:server` to start json-server
+3. Run `yarn start` to start the web application
 
 ## License
 
