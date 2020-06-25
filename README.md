@@ -21,7 +21,7 @@ Technologies will be used in this application: Nodejs, Typescript and Reactjs.</
 
 This app features all the latest tools and practices in web development!
 
-- ⚛️:blue_book: **Typescript** — TypeScript provides highly productive development tools for JavaScript IDEs and practices, like static checking.
+- :blue_book: **Typescript** — TypeScript provides highly productive development tools for JavaScript IDEs and practices, like static checking.
 - ⚛️ **React Js** — A JavaScript library for building user interfaces
 - 💹 **Node Js** — A web framework for Node Js
 - 📄 **Postgres** — A cross-platform and open-source database
