@@ -1,8 +1,14 @@
 import React from 'react';
 
+import GlobaStyle from './styles/global';
+
+import SignIn from './pages/SignIn';
+import Dashboard from './pages/Dashboard';
+
 const App: React.FC = () => (
   <>
-    <h1>Hello World</h1>
+    <Dashboard />
+    <GlobaStyle />
   </>
 );
 
