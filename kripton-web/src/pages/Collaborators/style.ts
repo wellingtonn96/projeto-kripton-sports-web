@@ -181,82 +181,101 @@ export const Footer = styled.div`
   }
 `;
 
-export const CardContainer = styled.div`
+export const FormContainer = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
+  padding: 30px 20px;
+  background-color: white;
+  box-shadow: 0 8px 16px 0 rgba(40, 40, 90, 0.09),
+    0 3px 6px 0 rgba(0, 0, 0, 0.065) !important;
+`;
 
-  @media (max-width: 760px) {
-    width: 100%;
-    flex-direction: column;
+export const FormHeader = styled.div`
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 2px solid gray;
+
+  i {
+    font-size: 18px;
+    margin-right: 10px;
+  }
+
+  h4 {
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 400;
   }
 `;
 
-export const Card = styled.div`
-  width: 24%;
+export const FormGroup = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background-color: #2e2e2e;
-  box-shadow: 0 8px 16px 0 rgba(40, 40, 90, 0.09),
-    0 3px 6px 0 rgba(0, 0, 0, 0.065);
-  color: #ffffff;
-  padding: 23px;
-  border-radius: 5px;
+  width: 100%;
+  padding: 20px 0px;
 
-  p {
-    font-weight: bold;
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-
-  p + p {
-    font-size: 15px;
+  input,
+  select {
+    width: 80%;
+    height: 40px;
+    font-size: 16px;
+    color: #494949;
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 20px;
+    background: none;
   }
 
   span {
-    font-size: 40px;
-  }
-
-  @media (max-width: 760px) {
-    width: 100%;
-    margin-bottom: 20px;
+    width: 20%;
+    margin-left: 10px;
+    font-size: 14px;
+    color: gray;
+    text-transform: uppercase;
   }
 `;
 
-export const DataTable = styled.div`
-  font-size: 18px;
-  background-color: #ffffff;
-  border-radius: 0 0 5px 5px;
-  box-shadow: 0 8px 16px 0 rgba(40, 40, 90, 0.09),
-    0 3px 6px 0 rgba(0, 0, 0, 0.065);
+export const ButtonGroup = styled.div`
+  display: flex;
   margin-top: 20px;
+  border-top: 1px solid #cccc;
+  align-items: center;
+  width: 100%;
+  padding-top: 20px;
+`;
 
-  div {
-    padding: 15px 20px;
-    border-bottom: 2px solid #b1aaaa;
+export const ButtonCancel = styled.button`
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin: 5px;
+  font-size: 14px;
+  text-transform: uppercase;
+  background-color: gray;
+  color: white;
+  font-weight: 900;
+  box-shadow: 0 8px 16px 0 rgba(207, 10, 10, 0.09),
+    0 3px 6px 0 rgba(214, 39, 16, 0.065) !important;
 
-    h1 {
-      font-size: 18px;
-      font-weight: 600;
-    }
+  &:hover {
+    opacity: 0.8;
   }
+`;
 
-  div + div {
-    overflow-x: auto;
-    border-collapse: collapse;
-    padding: 20px;
+export const ButtonSave = styled.button`
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin: 5px;
+  font-size: 14px;
+  text-transform: uppercase;
+  background-color: rgb(255, 41, 41);
+  color: white;
+  font-weight: 900;
+  box-shadow: 0 8px 16px 0 rgba(58, 212, 27, 0.09),
+    0 3px 6px 0 rgba(154, 241, 14, 0.065) !important;
 
-    table {
-      width: 100%;
-      text-align: left;
-      font-size: 16px;
-
-      td,
-      th {
-        padding: 20px;
-        border-top: 1px solid #dddddd;
-      }
-    }
+  &:hover {
+    opacity: 0.8;
   }
 `;
