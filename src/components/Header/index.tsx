@@ -7,10 +7,11 @@ import { FiSettings } from 'react-icons/fi';
 import { AiOutlineLogout, AiFillAccountBook } from 'react-icons/ai';
 import { Container, MenuDropDown } from './style';
 import perfilImg from '../../assets/img_ws.jpg';
+import { useModal } from '../../hooks/Modal';
 
 const Header: React.FC = () => {
   const [menu, setMenu] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const { openModal } = useModal();
 
   return (
     <>
@@ -66,7 +67,7 @@ const Header: React.FC = () => {
                   </i>
                   Setting
                 </li>
-                <li>
+                <li onClick={() => openModal()} role="presentation">
                   <i>
                     <AiOutlineLogout />
                   </i>

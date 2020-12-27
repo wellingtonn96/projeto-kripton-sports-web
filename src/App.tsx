@@ -3,12 +3,16 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import GlobaStyle from './styles/global';
 
+import { ModalProvider } from './hooks/Modal';
+
 import Routes from './routes';
 
 const App: React.FC = () => (
   <Router>
-    <GlobaStyle />
-    <Routes />
+    <ModalProvider>
+      <GlobaStyle />
+      <Routes />
+    </ModalProvider>
   </Router>
 );
 
