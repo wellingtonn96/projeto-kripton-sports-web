@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { useModal } from '../../hooks/Modal';
 
@@ -12,6 +13,7 @@ import {
 } from './style';
 
 export const Modal: React.FC = () => {
+  const history = useHistory();
   const { showModal, openModal } = useModal();
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -48,7 +50,9 @@ export const Modal: React.FC = () => {
               <p>Deseja realmente sair da sessão</p>
             </Content>
             <Footer>
-              <button type="button">Sair</button>
+              <button type="button" onClick={() => history.push('/')}>
+                Sair
+              </button>
               <button onClick={() => openModal()} type="button">
                 Cancelar
               </button>

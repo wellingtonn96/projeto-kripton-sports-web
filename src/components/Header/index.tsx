@@ -5,13 +5,19 @@ import { FaBell, FaSearch, FaBars } from 'react-icons/fa';
 import { FiSettings } from 'react-icons/fi';
 
 import { AiOutlineLogout, AiFillAccountBook } from 'react-icons/ai';
-import { Container, MenuDropDown } from './style';
+import { Container, HeaderDropwon } from './style';
 import perfilImg from '../../assets/img_ws.jpg';
 import { useModal } from '../../hooks/Modal';
 
+import HeaderMenuDropDown from './HeaderMenuDropdown';
+
 const Header: React.FC = () => {
-  const [menu, setMenu] = useState(false);
+  const [showDropDown, setShowDropDown] = useState(false);
   const { openModal } = useModal();
+
+  const openDropDown = () => {
+    setShowDropDown((prev) => !prev);
+  };
 
   return (
     <>
@@ -42,39 +48,37 @@ const Header: React.FC = () => {
             <img
               src={perfilImg}
               alt="perfil usuario"
-              onClick={() => setMenu(!menu)}
-              onKeyPress={() => setMenu(!menu)}
+              onClick={openDropDown}
+              onKeyPress={openDropDown}
               role="presentation"
             />
-            {menu && (
-              <MenuDropDown>
-                <li>
-                  <img src={perfilImg} alt="" />
-                  <div>
-                    <span>wellington santos</span>
-                    <p>weltossousa@gmail.com</p>
-                  </div>
-                </li>
-                <li>
-                  <i>
-                    <AiFillAccountBook />
-                  </i>
-                  Account
-                </li>
-                <li>
-                  <i>
-                    <FiSettings />
-                  </i>
-                  Setting
-                </li>
-                <li onClick={() => openModal()} role="presentation">
-                  <i>
-                    <AiOutlineLogout />
-                  </i>
-                  Logout
-                </li>
-              </MenuDropDown>
-            )}
+            <HeaderMenuDropDown showDropDown={showDropDown}>
+              <HeaderDropwon>
+                <img src={perfilImg} alt="" />
+                <div>
+                  <span>wellington santos</span>
+                  <p>weltossousa@gmail.com</p>
+                </div>
+              </HeaderDropwon>
+              <li>
+                <i>
+                  <AiFillAccountBook />
+                </i>
+                Account
+              </li>
+              <li>
+                <i>
+                  <FiSettings />
+                </i>
+                Setting
+              </li>
+              <li onClick={() => openModal()} role="presentation">
+                <i>
+                  <AiOutlineLogout />
+                </i>
+                Logout
+              </li>
+            </HeaderMenuDropDown>
           </li>
         </ul>
       </Container>

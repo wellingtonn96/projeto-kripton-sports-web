@@ -50,47 +50,17 @@ export const Container = styled.header`
   }
 `;
 
-export const MenuDropDown = styled.div`
-  position: absolute;
-  right: 0;
-  margin-top: 10px;
-  margin-right: 5px;
-  padding: 0;
-  display: block;
-  background-color: #ffffff;
-  border-radius: 5px;
-  box-shadow: 0 8px 16px 0 rgba(40, 40, 90, 0.09),
-    0 3px 6px 0 rgba(0, 0, 0, 0.065) !important;
+export const HeaderDropwon = styled.li`
+  padding: 10px 20px;
 
-  li:first-child {
-    padding: 10px 20px;
-
-    img {
-      margin-right: 10px;
-      width: 50px;
-      height: 50px;
-    }
-
-    span {
-      font-size: 18px;
-      font-weight: 800;
-    }
+  img {
+    margin-right: 10px;
+    width: 50px;
+    height: 50px;
   }
 
-  li {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    color: #2e2e2e;
-    border-bottom: 1px solid #f5f5f5;
-
-    &:hover {
-      background-color: #2a2a2a;
-      color: #ffffff;
-
-      i {
-        color: #ffffff;
-      }
-    }
+  span {
+    font-size: 18px;
+    font-weight: 800;
   }
 `;
