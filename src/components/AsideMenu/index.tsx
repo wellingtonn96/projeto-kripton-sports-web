@@ -9,18 +9,19 @@ import {
   FaUsers,
   FaTh,
   FaPlus,
+  FaRegCircle,
 } from 'react-icons/fa';
 
 import { FiSettings } from 'react-icons/fi';
 
 import { AiFillDashboard } from 'react-icons/ai';
 
+import { Link } from 'react-router-dom';
 import { Container } from './style';
 
 import logoImg from '../../assets/logo.png';
 
 const AsideMenu: React.FC = () => {
-  const [menu] = useState(false);
   const [dropSidemenu, setDropSidemenu] = useState(false);
 
   return (
@@ -29,80 +30,117 @@ const AsideMenu: React.FC = () => {
         <img src={logoImg} alt="logo" />
       </div>
       <ul>
-        <a href="/dashboard">
+        <Link to="/dashboard">
           <li>
             <i>
               <AiFillDashboard />
             </i>
             Dashboard
           </li>
-        </a>
-        <li>
-          <i>
-            <FaTh />
-          </i>
-          <a href=".">PDV</a>
-        </li>
-        <li
+        </Link>
+        <Link to="/collaborators">
+          <li>
+            <i>
+              <FaUsers />
+            </i>
+            Colaboradores
+          </li>
+        </Link>
+        <Link to="?">
+          <li>
+            <i>
+              <FaTh />
+            </i>
+            PDV
+          </li>
+        </Link>
+        <Link
+          to="/collaborators"
           onClick={() => setDropSidemenu(!dropSidemenu)}
-          onKeyPress={() => setDropSidemenu(!menu)}
-          role="presentation"
         >
-          <i>
-            <FaBarcode />
-          </i>
-          <a href=".">Produtos</a>
-        </li>
-        {dropSidemenu ? (
+          <li>
+            <i>
+              <FaBarcode />
+            </i>
+            Produtos
+          </li>
+        </Link>
+        {dropSidemenu && (
           <ul className="dropdown-sidemenu">
-            <li>Account</li>
-            <li>Account</li>
-            <li>Setting</li>
-            <li>Logout</li>
+            <li>
+              <FaRegCircle />
+              <p>Account</p>
+            </li>
+            <li>
+              <FaRegCircle />
+              <p>Account</p>
+            </li>
+            <li>
+              <FaRegCircle />
+              <p>Account</p>
+            </li>
+            <li>
+              <FaRegCircle />
+              <p>Account</p>
+            </li>
           </ul>
-        ) : null}
-        <li>
-          <i>
-            <FaFolder />
-          </i>
-          <a href=".">Categorias</a>
-        </li>
-        <li>
-          <i>
-            <FaShoppingCart />
-          </i>
-          <a href=".">Vendas</a>
-        </li>
-        <li>
-          <i>
-            <FaPlus />
-          </i>
-          <a href=".">Compras</a>
-        </li>
-        <li>
-          <i>
-            <FaCreditCard />
-          </i>
-          <a href=".">Cartães</a>
-        </li>
-        <li>
-          <i>
-            <FaUsers />
-          </i>
-          <a href=".">Pessoas</a>
-        </li>
-        <li>
-          <i>
-            <FiSettings />
-          </i>
-          <a href=".">Configurações</a>
-        </li>
-        <li>
-          <i className="search">
-            <FaChartBar />
-          </i>
-          <a href=".">Relatórios</a>
-        </li>
+        )}
+        <Link to="/collaborators">
+          <li>
+            <i>
+              <FaFolder />
+            </i>
+            Categorias
+          </li>
+        </Link>
+        <Link to="/collaborators">
+          <li>
+            <i>
+              <FaShoppingCart />
+            </i>
+            Vendas
+          </li>
+        </Link>
+        <Link to="/collaborators">
+          <li>
+            <i>
+              <FaPlus />
+            </i>
+            Compras
+          </li>
+        </Link>
+        <Link to="/collaborators">
+          <li>
+            <i>
+              <FaCreditCard />
+            </i>
+            Cartães
+          </li>
+        </Link>
+        <Link to="/collaborators">
+          <li>
+            <i>
+              <FaUsers />
+            </i>
+            Pessoas
+          </li>
+        </Link>
+        <Link to="/collaborators">
+          <li>
+            <i>
+              <FiSettings />
+            </i>
+            Configurações
+          </li>
+        </Link>
+        <Link to="/collaborators">
+          <li>
+            <i className="search">
+              <FaChartBar />
+            </i>
+            Relatórios
+          </li>
+        </Link>
       </ul>
     </Container>
   );

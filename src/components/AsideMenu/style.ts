@@ -30,7 +30,7 @@ export const Container = styled.aside`
       border-bottom: 1px solid #141414;
 
       &:hover {
-        background-color: #2e2e2e;
+        background-color: #2a2a2a;
         border-left: 5px solid red;
       }
     }
@@ -45,6 +45,25 @@ export const Container = styled.aside`
       text-decoration: none;
       font-size: 15px;
       color: #999999;
+    }
+
+    ul {
+      background-color: #1a1a1a;
+
+      li {
+        text-align: 50px;
+        color: #999999;
+        border-bottom: 1px solid #000000;
+
+        p {
+          margin-left: 15px;
+        }
+
+        &:hover {
+          background-color: #222222;
+          border-left: 5px solid red;
+        }
+      }
     }
   }
 
