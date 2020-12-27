@@ -1,8 +1,6 @@
-import React from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 
 import { useModal } from '../../hooks/Modal';
-
-// import { MdClose } from 'react-icons/md';
 
 import {
   LightBox,
@@ -15,11 +13,32 @@ import {
 
 export const Modal: React.FC = () => {
   const { showModal, openModal } = useModal();
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  const closeModal = (e: React.MouseEvent) => {
+    if (modalRef.current === e.target) {
+      openModal();
+    }
+  };
+
+  const keyPress = useCallback(
+    (e) => {
+      if (e.key === 'Escape' && showModal) {
+        openModal();
+      }
+    },
+    [showModal, openModal]
+  );
+
+  useEffect(() => {
+    document.addEventListener('keydown', keyPress);
+    return () => document.removeEventListener('keydown', keyPress);
+  }, [keyPress]);
 
   return (
     <>
       {showModal && (
-        <LightBox>
+        <LightBox onClick={closeModal} ref={modalRef}>
           <ModalWrapper>
             <Header>
               <h1>Sair da sessão?</h1>

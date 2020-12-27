@@ -6,10 +6,10 @@ import { shade } from 'polished';
 export const appearFromMiddle = keyframes`
   from {
     opacity: 0;
-    transform: scale(0)
+    transform:translateY(-100%)
   } to {
     opacity: 1;
-    transform: (1)
+    transform: translateY(0%)
   }
 `;
 
@@ -32,7 +32,7 @@ export const ModalWrapper = styled.div`
   width: 600px;
   background-color: white;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.4);
-  animation: ${appearFromMiddle} 0.6s;
+  animation: ${appearFromMiddle} 0.3s;
 
   @media (max-width: 720px) {
     width: 100%;
