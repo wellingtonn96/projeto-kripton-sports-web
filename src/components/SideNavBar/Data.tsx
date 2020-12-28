@@ -11,6 +11,14 @@ export interface ISideNavBarData {
   icon: React.ReactElement<IconType>;
   iconOpened: React.ReactElement<IconType>;
   iconClosed: React.ReactElement<IconType>;
+  subNav?: ISubNavData[];
+}
+
+interface ISubNavData {
+  title: string;
+  path: string;
+  icon: React.ReactElement<IconType>;
+  cName?: string;
 }
 
 export const SideNavBarData: ISideNavBarData[] = [
@@ -20,6 +28,19 @@ export const SideNavBarData: ISideNavBarData[] = [
     icon: <AiIcons.AiFillDashboard />,
     iconOpened: <IoIcons.IoIosArrowBack />,
     iconClosed: <IoIcons.IoIosArrowDown />,
+
+    subNav: [
+      {
+        title: 'Users',
+        path: '/overview/users',
+        icon: <IoIcons.IoIosPaper />,
+      },
+      {
+        title: 'Revenue',
+        path: '/overview/revenue',
+        icon: <IoIcons.IoIosPaper />,
+      },
+    ],
   },
   {
     title: 'colaboradores',
@@ -55,6 +76,26 @@ export const SideNavBarData: ISideNavBarData[] = [
     icon: <FaIcons.FaShoppingCart />,
     iconOpened: <IoIcons.IoIosArrowBack />,
     iconClosed: <IoIcons.IoIosArrowDown />,
+
+    subNav: [
+      {
+        title: 'Reports',
+        path: '/reports/reports1',
+        icon: <IoIcons.IoIosPaper />,
+        cName: 'sub-nav',
+      },
+      {
+        title: 'Reports 2',
+        path: '/reports/reports2',
+        icon: <IoIcons.IoIosPaper />,
+        cName: 'sub-nav',
+      },
+      {
+        title: 'Reports 3',
+        path: '/reports/reports3',
+        icon: <IoIcons.IoIosPaper />,
+      },
+    ],
   },
   {
     title: 'Compras',
@@ -69,6 +110,26 @@ export const SideNavBarData: ISideNavBarData[] = [
     icon: <FaIcons.FaCreditCard />,
     iconOpened: <IoIcons.IoIosArrowBack />,
     iconClosed: <IoIcons.IoIosArrowDown />,
+
+    subNav: [
+      {
+        title: 'Reports',
+        path: '/reports/reports1',
+        icon: <IoIcons.IoIosPaper />,
+        cName: 'sub-nav',
+      },
+      {
+        title: 'Reports 2',
+        path: '/reports/reports2',
+        icon: <IoIcons.IoIosPaper />,
+        cName: 'sub-nav',
+      },
+      {
+        title: 'Reports 3',
+        path: '/reports/reports3',
+        icon: <IoIcons.IoIosPaper />,
+      },
+    ],
   },
   {
     title: 'Pessoas',

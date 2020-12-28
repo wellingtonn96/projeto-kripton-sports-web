@@ -5,7 +5,7 @@ import { FaBell, FaSearch, FaBars } from 'react-icons/fa';
 import { FiSettings } from 'react-icons/fi';
 
 import { AiOutlineLogout, AiFillAccountBook } from 'react-icons/ai';
-import { Container, HeaderDropwon } from './style';
+import { Container, HeaderDropDown, InputSearch } from './style';
 import perfilImg from '../../assets/img_ws.jpg';
 import { useModal } from '../../hooks/Modal';
 
@@ -29,12 +29,12 @@ const Header: React.FC = () => {
             </i>
           </li>
           <li>
-            <input type="text" />
-          </li>
-          <li>
-            <i>
-              <FaSearch />
-            </i>
+            <InputSearch>
+              <input type="text" />
+              <button type="button">
+                <FaSearch />
+              </button>
+            </InputSearch>
           </li>
         </ul>
 
@@ -53,13 +53,13 @@ const Header: React.FC = () => {
               role="presentation"
             />
             <HeaderMenuDropDown showDropDown={showDropDown}>
-              <HeaderDropwon>
+              <HeaderDropDown>
                 <img src={perfilImg} alt="" />
                 <div>
                   <span>wellington santos</span>
                   <p>weltossousa@gmail.com</p>
                 </div>
-              </HeaderDropwon>
+              </HeaderDropDown>
               <li>
                 <i>
                   <AiFillAccountBook />
@@ -72,7 +72,7 @@ const Header: React.FC = () => {
                 </i>
                 Setting
               </li>
-              <li onClick={() => openModal()} role="presentation">
+              <li onClick={openModal} role="presentation">
                 <i>
                   <AiOutlineLogout />
                 </i>

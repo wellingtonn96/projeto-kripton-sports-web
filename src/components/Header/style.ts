@@ -28,20 +28,6 @@ export const Container = styled.header`
 
     li {
       list-style: none;
-
-      input {
-        width: 300px;
-        height: 30px;
-        border-radius: 50px;
-        border: 1px solid #888888;
-        background-color: none;
-        margin: 10px;
-        padding: 10px;
-
-        @media (max-width: 760px) {
-          width: 100%;
-        }
-      }
     }
   }
 
@@ -50,7 +36,39 @@ export const Container = styled.header`
   }
 `;
 
-export const HeaderDropwon = styled.li`
+export const InputSearch = styled.div`
+  width: 300px;
+  height: 30px;
+  border-radius: 50px;
+  border: 1px solid #888888;
+  background-color: none;
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  height: 30px;
+  align-items: center;
+
+  @media (max-width: 760px) {
+    width: 100%;
+  }
+
+  input {
+    background: transparent;
+    width: 100%;
+    border: 0;
+  }
+
+  button {
+    color: #888888;
+    display: flex;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+`;
+
+export const HeaderDropDown = styled.li`
   padding: 10px 20px;
 
   img {

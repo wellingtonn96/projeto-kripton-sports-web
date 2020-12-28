@@ -15,8 +15,8 @@ const AsideMenu: React.FC = () => {
         <img src={logoImg} alt="logo" />
       </div>
       <ul>
-        {SideNavBarData.map((item) => (
-          <NavLink item={item} />
+        {SideNavBarData.map((item, index) => (
+          <NavLink item={item} key={index.toString()} />
         ))}
       </ul>
     </Container>
