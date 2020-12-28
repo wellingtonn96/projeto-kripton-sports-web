@@ -9,14 +9,17 @@ import Header from '../../../components/Header';
 import SideNavBar from '../../../components/SideNavBar';
 
 import { Modal } from '../../../components/Modal';
+import { useModal } from '../../../hooks/Modal';
 
 const DefaultLayout: React.FC = ({ children }) => {
+  const { showSideBar } = useModal();
+
   return (
     <>
       <Modal />
       <Container>
         <SideNavBar />
-        <Main>
+        <Main showModal={showSideBar}>
           <Header />
           <Content>{children}</Content>
 

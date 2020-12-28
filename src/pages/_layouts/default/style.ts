@@ -5,9 +5,14 @@ export const Container = styled.div`
   display: flex;
 `;
 
-export const Main = styled.main`
-  width: 82%;
-  margin-left: 18%;
+interface IPropsMain {
+  showModal: boolean;
+}
+
+export const Main = styled.main<IPropsMain>`
+  width: 100%;
+  margin-left: ${({ showModal }) => (showModal ? '250px' : '0')};
+  transition: -350ms;
 
   @media (max-width: 760px) {
     width: 100%;

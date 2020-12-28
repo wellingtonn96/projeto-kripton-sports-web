@@ -1,13 +1,19 @@
 import styled from 'styled-components';
 
-export const Container = styled.aside`
+interface IPropsContainer {
+  sideBar: boolean;
+}
+
+export const Container = styled.aside<IPropsContainer>`
   position: fixed;
-  width: 18%;
+  width: 250px;
   height: 100vh;
   background-color: #222222;
   font-weight: 500;
+  left: ${({ sideBar }) => (sideBar ? '0' : '-100%')};
 
   div {
+    position: relative;
     background-color: #ffffff;
     height: 60px;
     display: flex;
@@ -18,9 +24,9 @@ export const Container = styled.aside`
     img {
       height: 60px;
     }
-  }
 
-  @media (max-width: 760px) {
-    display: none;
+    @media (max-width: 760px) {
+      margin-top: 60px;
+    }
   }
 `;

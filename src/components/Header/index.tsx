@@ -13,7 +13,7 @@ import HeaderMenuDropDown from './HeaderMenuDropdown';
 
 const Header: React.FC = () => {
   const [showDropDown, setShowDropDown] = useState(false);
-  const { openModal } = useModal();
+  const { openModal, showOrHideSideBar } = useModal();
 
   const openDropDown = () => {
     setShowDropDown((prev) => !prev);
@@ -22,10 +22,10 @@ const Header: React.FC = () => {
   return (
     <>
       <Container>
-        <ul style={{ flexGrow: 1 }}>
+        <ul>
           <li>
             <i>
-              <FaBars />
+              <FaBars onClick={showOrHideSideBar} />
             </i>
           </li>
           <li>
@@ -38,7 +38,7 @@ const Header: React.FC = () => {
           </li>
         </ul>
 
-        <ul>
+        <ul style={{ position: 'fixed', right: '10px', top: '10px' }}>
           <li>
             <i>
               <FaBell />

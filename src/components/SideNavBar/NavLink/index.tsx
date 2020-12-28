@@ -11,7 +11,7 @@ interface IPropsNavLink {
 const NavLink: React.FC<IPropsNavLink> = ({ item }) => {
   const [subMenu, setSubMenu] = useState(false);
 
-  const showSubnav = () => setSubMenu(!subMenu);
+  const showSubnav = () => setSubMenu((prev) => !prev);
 
   return (
     <>
