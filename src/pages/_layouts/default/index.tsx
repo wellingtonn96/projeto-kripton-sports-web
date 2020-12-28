@@ -3,7 +3,10 @@ import React from 'react';
 import { Container, Main, Footer, Content } from './style';
 
 import Header from '../../../components/Header';
-import AsideMenu from '../../../components/AsideMenu';
+
+// import SideBar from '../../../components/SideBar';
+
+import SideNavBar from '../../../components/SideNavBar';
 
 import { Modal } from '../../../components/Modal';
 
@@ -12,7 +15,7 @@ const DefaultLayout: React.FC = ({ children }) => {
     <>
       <Modal />
       <Container>
-        <AsideMenu />
+        <SideNavBar />
         <Main>
           <Header />
           <Content>{children}</Content>
