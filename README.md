@@ -1,55 +1,46 @@
-<h1 align="center">
-<br>
-  <img src="./assets/kriptonLogoNova.png" alt="KriptonSports">
-<br>
-<br>
-  Kripton Sports
-</h1>
+# Getting Started with Create React App
 
-<p align="center">
-Sales management application,
-inventory, customer registration and the nutritionist's chart. 
-Technologies will be used in this application: Nodejs, Typescript and Reactjs.</p>
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-<div>
-  <img style="background-color:black" src="./assets/Screenshot%20from%202020-06-25%2013-51-59.png" alt="demo-web" height="425">
-</div>
+## Available Scripts
 
-<hr />
+In the project directory, you can run:
 
-## Features
+### `yarn start`
 
-This app features all the latest tools and practices in web development!
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-- :blue_book: **Typescript** — TypeScript provides highly productive development tools for JavaScript IDEs and practices, like static checking.
-- ⚛️ **React Js** — A JavaScript library for building user interfaces
-- 💹 **Node Js** — A web framework for Node Js
-- 📄 **Postgres** — A cross-platform and open-source database
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-## Getting started
+### `yarn test`
 
-1. Clone this repo using `git clone github.com/wellingtonn96/projetoKriptonSports.git`
-2. Move yourself to the appropriate directory: `cd projetoKriptonSports/`<br />
-3. Run `yarn` to install dependencies
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### Getting started with the backend server
+### `yarn build`
 
-1. Move yourself to the server folder: `cd server`
-2. Run `yarn install` to install dependencies
-3. Run `yarn dev` to start the server
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-### Getting started with the frontend app
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-1. Move yourself to the web folder: `cd web`
-2. Run `yarn install` to install the dependencies
-3. Run `yarn start` to start the web application
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### Getting started the frontend with json-server
+### `yarn eject`
 
-1. Move yourself to the web folder: `cd web`
-2. Run `yarn dev:server` to start json-server
-3. Run `yarn start` to start the web application
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-## License
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-This project is licensed under the MIT License - see the [LICENSE](https://opensource.org/licenses/MIT) page for details.
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
