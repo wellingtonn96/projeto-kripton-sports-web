@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import background from '../../assets/background2.jpg';
 
@@ -12,9 +12,13 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 430px;
+  height: 500px;
   background-color: white;
-  padding: 50px;
   border-radius: 5px;
   font-weight: 500;
   color: #707070;
@@ -26,20 +30,16 @@ export const Content = styled.div`
   }
 
   form {
+    width: 300px;
+
     input {
       width: 100%;
-      height: 45px;
-      padding: 20px;
-      margin-top: 10px;
-      font-size: 14px;
-      background: whitesmoke;
-      border: none;
-      margin-bottom: 20px;
-      border-radius: 50px;
+      background: transparent;
+      border: 0;
     }
 
     button {
-      width: 100%;
+      width: 300px;
       height: 45px;
       border: none;
       font-size: 14px;
@@ -61,14 +61,54 @@ export const Content = styled.div`
     }
   }
 
-  a {
-    text-align: right;
-    text-decoration: none;
+  p {
     color: #707070;
     font-size: 14px;
 
-    &:hover {
-      text-decoration: underline;
+    a {
+      margin-left: 2px;
+      text-decoration: transparent;
+      color: #909090;
+      font-size: 14px;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
+  }
+`;
+
+interface InputProps {
+  IsFocused: boolean;
+  isFilled: boolean;
+}
+export const InputField = styled.div<InputProps>`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 45px;
+  padding: 20px;
+  margin-top: 10px;
+  font-size: 14px;
+  background: whitesmoke;
+  border: none;
+  margin-bottom: 20px;
+  border-radius: 50px;
+  ${(props) =>
+    props.IsFocused &&
+    css`
+      border: 2px solid #111111;
+      color: #111111;
+    `}
+
+  ${(props) =>
+    props.isFilled &&
+    css`
+      color: #301c16;
+    `}
+
+
+  svg {
+    margin-right: 15px;
   }
 `;

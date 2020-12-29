@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useModal } from '../../hooks/Modal';
+import { useGlobal } from '../../hooks/Global';
 import { Container } from './style';
 
 import logoImg from '../../assets/logo.png';
@@ -10,7 +10,7 @@ import NavLink from './NavLink';
 import { SideNavBarData } from './Data';
 
 const AsideMenu: React.FC = () => {
-  const { showSideBar } = useModal();
+  const { showSideBar } = useGlobal();
 
   return (
     <Container sideBar={showSideBar}>

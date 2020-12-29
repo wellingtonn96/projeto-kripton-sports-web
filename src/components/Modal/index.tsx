@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { useModal } from '../../hooks/Modal';
+import { useGlobal } from '../../hooks/Global';
 
 import {
   LightBox,
@@ -14,7 +14,7 @@ import {
 
 export const Modal: React.FC = () => {
   const history = useHistory();
-  const { showModal, openModal } = useModal();
+  const { showModal, openModal } = useGlobal();
   const modalRef = useRef<HTMLDivElement>(null);
 
   const closeModal = (e: React.MouseEvent) => {

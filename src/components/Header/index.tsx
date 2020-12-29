@@ -7,13 +7,13 @@ import { FiSettings } from 'react-icons/fi';
 import { AiOutlineLogout, AiFillAccountBook } from 'react-icons/ai';
 import { Container, HeaderDropDown, InputSearch } from './style';
 import perfilImg from '../../assets/img_ws.jpg';
-import { useModal } from '../../hooks/Modal';
+import { useGlobal } from '../../hooks/Global';
 
 import HeaderMenuDropDown from './HeaderMenuDropdown';
 
 const Header: React.FC = () => {
   const [showDropDown, setShowDropDown] = useState(false);
-  const { openModal, showOrHideSideBar } = useModal();
+  const { openModal, showOrHideSideBar } = useGlobal();
 
   const openDropDown = () => {
     setShowDropDown((prev) => !prev);

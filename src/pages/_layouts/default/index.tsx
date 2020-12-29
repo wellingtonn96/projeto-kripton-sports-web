@@ -9,10 +9,10 @@ import Header from '../../../components/Header';
 import SideNavBar from '../../../components/SideNavBar';
 
 import { Modal } from '../../../components/Modal';
-import { useModal } from '../../../hooks/Modal';
+import { useGlobal } from '../../../hooks/Global';
 
 const DefaultLayout: React.FC = ({ children }) => {
-  const { showSideBar } = useModal();
+  const { showSideBar } = useGlobal();
 
   return (
     <>
