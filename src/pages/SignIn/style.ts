@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import background from '../../assets/background2.jpg';
 
@@ -31,12 +31,6 @@ export const Content = styled.div`
 
   form {
     width: 300px;
-
-    input {
-      width: 100%;
-      background: transparent;
-      border: 0;
-    }
 
     button {
       width: 300px;
@@ -75,40 +69,5 @@ export const Content = styled.div`
         text-decoration: underline;
       }
     }
-  }
-`;
-
-interface InputProps {
-  IsFocused: boolean;
-  isFilled: boolean;
-}
-export const InputField = styled.div<InputProps>`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 45px;
-  padding: 20px;
-  margin-top: 10px;
-  font-size: 14px;
-  background: whitesmoke;
-  border: none;
-  margin-bottom: 20px;
-  border-radius: 50px;
-  ${(props) =>
-    props.IsFocused &&
-    css`
-      border: 2px solid #111111;
-      color: #111111;
-    `}
-
-  ${(props) =>
-    props.isFilled &&
-    css`
-      color: #301c16;
-    `}
-
-
-  svg {
-    margin-right: 15px;
   }
 `;
