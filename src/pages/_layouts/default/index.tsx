@@ -19,7 +19,7 @@ const DefaultLayout: React.FC = ({ children }) => {
       <Modal />
       <Container>
         <SideNavBar />
-        <Main showModal={showSideBar}>
+        <Main showSideBar={showSideBar}>
           <Header />
           <Content>{children}</Content>
 

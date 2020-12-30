@@ -6,12 +6,12 @@ export const Container = styled.div`
 `;
 
 interface IPropsMain {
-  showModal: boolean;
+  showSideBar: boolean;
 }
 
 export const Main = styled.main<IPropsMain>`
   width: 100%;
-  margin-left: ${({ showModal }) => (showModal ? '250px' : '0')};
+  margin-left: ${({ showSideBar }) => (showSideBar ? '250px' : '0')};
   transition: -350ms;
 
   @media (max-width: 760px) {

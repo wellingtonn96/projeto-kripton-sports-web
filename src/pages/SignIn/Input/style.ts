@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 interface InputProps {
   IsFocused: boolean;
+  isFilled: boolean;
 }
 
 export const InputField = styled.div<InputProps>`
@@ -21,6 +22,13 @@ export const InputField = styled.div<InputProps>`
     css`
       border: 2px solid #111111;
       color: #111111;
+    `}
+
+  ${(props) =>
+    props.isFilled &&
+    css`
+      color: #000000;
+      font-weight: 500;
     `}
 
   svg {

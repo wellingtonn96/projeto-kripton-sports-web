@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { shade } from 'polished';
 
 import background from '../../assets/background2.jpg';
 
@@ -43,15 +44,18 @@ export const Content = styled.div`
       text-transform: capitalize;
       background: linear-gradient(
         90deg,
-        rgba(237, 237, 237, 1) 0%,
+        #ffff 0%,
         rgba(253, 29, 29, 1) 0%,
         rgba(183, 30, 34, 1) 0%,
-        rgba(163, 0, 5, 1) 28%,
         rgba(244, 120, 120, 1) 100%
       );
       box-shadow: 0 8px 16px 0 rgba(40, 40, 90, 0.09),
         0 3px 6px 0 rgba(0, 0, 0, 0.065);
       color: white;
+
+      &:hover {
+        background: ${shade(0.4, 'red')};
+      }
     }
   }
 

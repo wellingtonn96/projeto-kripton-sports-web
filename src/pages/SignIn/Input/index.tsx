@@ -1,10 +1,10 @@
 import React, {
   useCallback,
   useState,
-  useRef,
   InputHTMLAttributes,
+  useRef,
 } from 'react';
-import { FiUser } from 'react-icons/fi';
+
 import { IconBaseProps } from 'react-icons/lib';
 
 import { InputField } from './style';
@@ -14,8 +14,10 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: React.ComponentType<IconBaseProps>;
 }
 
-const Input: React.FC<InputProps> = ({ name, icon: Icon }) => {
+const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
+  const inputRef = useRef<HTMLInputElement>(null);
   const [isFocused, setIsFocused] = useState(false);
+  const [isFilled, setIsFilled] = useState(false);
 
   const handleInput = useCallback(() => {
     setIsFocused(true);
@@ -23,16 +25,17 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon }) => {
 
   const handleInputBlur = useCallback(() => {
     setIsFocused(false);
+    setIsFilled(!!inputRef.current?.value);
   }, []);
 
   return (
-    <InputField IsFocused={isFocused}>
+    <InputField isFilled={isFilled} IsFocused={isFocused}>
       {Icon && <Icon size={20} />}
       <input
         onFocus={handleInput}
         onBlur={handleInputBlur}
-        type="password"
-        placeholder="Digite sua senha"
+        {...rest}
+        ref={inputRef}
       />
     </InputField>
   );
