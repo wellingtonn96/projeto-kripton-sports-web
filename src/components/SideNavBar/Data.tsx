@@ -28,26 +28,26 @@ export const SideNavBarData: ISideNavBarData[] = [
     icon: <AiIcons.AiFillDashboard />,
     iconOpened: <IoIcons.IoIosArrowBack />,
     iconClosed: <IoIcons.IoIosArrowDown />,
+  },
+  {
+    title: 'colaboradores',
+    path: '#',
+    icon: <FaIcons.FaUsers />,
+    iconOpened: <IoIcons.IoIosArrowBack />,
+    iconClosed: <IoIcons.IoIosArrowDown />,
 
     subNav: [
       {
-        title: 'Users',
-        path: '/overview/users',
-        icon: <IoIcons.IoIosPaper />,
+        title: 'cadastrar colaborador',
+        path: '/collaborators',
+        icon: <FaIcons.FaRegCircle size={13} />,
       },
       {
         title: 'Revenue',
         path: '/overview/revenue',
-        icon: <IoIcons.IoIosPaper />,
+        icon: <FaIcons.FaRegCircle size={13} />,
       },
     ],
-  },
-  {
-    title: 'colaboradores',
-    path: '/collaborators',
-    icon: <FaIcons.FaUsers />,
-    iconOpened: <IoIcons.IoIosArrowBack />,
-    iconClosed: <IoIcons.IoIosArrowDown />,
   },
   {
     title: 'PDV',
@@ -81,19 +81,19 @@ export const SideNavBarData: ISideNavBarData[] = [
       {
         title: 'Reports',
         path: '/reports/reports1',
-        icon: <IoIcons.IoIosPaper />,
+        icon: <FaIcons.FaRegCircle size={13} />,
         cName: 'sub-nav',
       },
       {
         title: 'Reports 2',
         path: '/reports/reports2',
-        icon: <IoIcons.IoIosPaper />,
+        icon: <FaIcons.FaRegCircle size={13} />,
         cName: 'sub-nav',
       },
       {
         title: 'Reports 3',
         path: '/reports/reports3',
-        icon: <IoIcons.IoIosPaper />,
+        icon: <FaIcons.FaRegCircle size={13} />,
       },
     ],
   },
@@ -115,19 +115,19 @@ export const SideNavBarData: ISideNavBarData[] = [
       {
         title: 'Reports',
         path: '/reports/reports1',
-        icon: <IoIcons.IoIosPaper />,
+        icon: <FaIcons.FaRegCircle size={13} />,
         cName: 'sub-nav',
       },
       {
         title: 'Reports 2',
         path: '/reports/reports2',
-        icon: <IoIcons.IoIosPaper />,
+        icon: <FaIcons.FaRegCircle size={13} />,
         cName: 'sub-nav',
       },
       {
         title: 'Reports 3',
         path: '/reports/reports3',
-        icon: <IoIcons.IoIosPaper />,
+        icon: <FaIcons.FaRegCircle size={13} />,
       },
     ],
   },
