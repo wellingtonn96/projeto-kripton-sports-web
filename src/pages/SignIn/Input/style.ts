@@ -1,27 +1,33 @@
 import styled, { css } from 'styled-components';
+import Tootip from './Tootip';
 
 interface InputProps {
   IsFocused: boolean;
   isFilled: boolean;
+  isErrored: boolean;
 }
 
 export const InputField = styled.div<InputProps>`
+  position: relative;
+  width: 300px;
   display: flex;
   align-items: center;
-  width: 100%;
+  justify-content: center;
+  background: whitesmoke;
   height: 45px;
-  padding: 20px;
   margin-top: 10px;
   font-size: 14px;
-  background: whitesmoke;
   border: none;
   margin-bottom: 20px;
   border-radius: 50px;
+  border: 2px solid #eeee;
+  color: #aaaaaa;
+
   ${(props) =>
     props.IsFocused &&
     css`
-      border: 2px solid #111111;
-      color: #111111;
+      color: #000000;
+      border-color: #000000;
     `}
 
   ${(props) =>
@@ -31,13 +37,38 @@ export const InputField = styled.div<InputProps>`
       font-weight: 500;
     `}
 
-  svg {
-    margin-right: 15px;
-  }
+  ${(props) =>
+    props.isErrored &&
+    css`
+      color: #c53030;
+      border-color: #c53030;
+    `}
 
   input {
-    width: 100%;
-    background: transparent;
+    background-color: transparent;
+    width: 250px;
+    padding: 0 25px 0 10px;
     border: 0;
+
+    &::placeholder {
+      color: #aaaaaa;
+    }
+  }
+`;
+
+export const Error = styled(Tootip)`
+  height: 20px;
+
+  svg {
+    position: absolute;
+    margin: 0;
+    right: 0px;
+  }
+
+  span {
+    color: #fff;
+    &::before {
+      border-color: #c53030 transparent;
+    }
   }
 `;
