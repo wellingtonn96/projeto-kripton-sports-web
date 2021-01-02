@@ -4,11 +4,9 @@ import { FiUser } from 'react-icons/fi';
 
 import { CardContainer, Card, DataTable } from './style';
 
-import DefaultLayout from '../_layouts/default';
-
 const Dashboard: React.FC = () => {
   return (
-    <DefaultLayout>
+    <>
       <CardContainer>
         <Card>
           <div>
@@ -112,7 +110,7 @@ const Dashboard: React.FC = () => {
           </table>
         </div>
       </DataTable>
-    </DefaultLayout>
+    </>
   );
 };
 

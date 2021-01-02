@@ -1,11 +1,21 @@
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 import { Link } from 'react-router-dom';
 
-export const Container = styled(Link)`
+interface IContainerProps {
+  subMenuSelected?: boolean;
+}
+
+export const Container = styled(Link)<IContainerProps>`
   text-decoration: none;
   font-size: 15px;
-  color: #999999;
+  color: #888888;
+  text-transform: capitalize;
+  font-weight: 100;
+
+  svg {
+    color: #888888;
+  }
 
   li {
     list-style: none;
@@ -13,18 +23,35 @@ export const Container = styled(Link)`
     align-items: center;
     list-style: none;
     padding: 10px;
-    border-bottom: 1px solid #141414;
+    border-bottom: 1px solid #3a3a3a;
+
+    ${(props) =>
+      props.subMenuSelected &&
+      css`
+        background-color: #555555;
+        border-left: 5px solid red;
+        color: #ffffff;
+
+        svg {
+          color: #ffffff;
+        }
+      `}
 
     &:hover {
-      background-color: #3a3a3a;
+      background-color: #555555;
       border-left: 5px solid red;
+      color: #ffffff;
+
+      svg {
+        color: white;
+      }
     }
   }
 
   i {
     font-size: 18px;
     margin-right: 15px;
-    color: #999999;
+    color: #aaaaaa;
   }
 
   p {
@@ -32,24 +59,28 @@ export const Container = styled(Link)`
   }
 `;
 
-export const SubMenuLinks = styled.ul`
-  display: flex;
+export const SubMenuLinks = styled.ul<IContainerProps>`
+  display: ${(props) => (props.subMenuSelected ? 'none' : 'fex')};
   background-color: #1a1a1a;
+  font-weight: 100;
+  transition: 2s;
 
   li {
     width: 100%;
-    color: #999999;
+    color: #aaaaaa;
     padding: 10px;
-    border-bottom: 1px solid #141414;
 
     i {
-      margin-left: 20px;
+      margin-left: 5px;
       margin-right: 15px;
     }
 
     &:hover {
-      background-color: #2a2a2a;
-      border-left: 5px solid red;
+      color: #ffffff;
+
+      svg {
+        color: white;
+      }
     }
   }
 `;

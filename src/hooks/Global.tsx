@@ -1,15 +1,15 @@
 import React, { createContext, useContext, useState } from 'react';
 
-interface ModalContextData {
+interface GlobalContextData {
   showModal: boolean;
   openModal(): void;
   showSideBar: boolean;
   showOrHideSideBar(): void;
 }
 
-const ModalContext = createContext({} as ModalContextData);
+const GlobalContex = createContext({} as GlobalContextData);
 
-const ModalProvider: React.FC = ({ children }) => {
+const GlobalProvider: React.FC = ({ children }) => {
   const [showModal, setShowModal] = useState(false);
   const [showSideBar, setShowSideBar] = useState(true);
 
@@ -22,18 +22,18 @@ const ModalProvider: React.FC = ({ children }) => {
   };
 
   return (
-    <ModalContext.Provider
+    <GlobalContex.Provider
       value={{ showModal, openModal, showSideBar, showOrHideSideBar }}
     >
       {children}
-    </ModalContext.Provider>
+    </GlobalContex.Provider>
   );
 };
 
-const useModal = (): ModalContextData => {
-  const context = useContext(ModalContext);
+const useGlobal = (): GlobalContextData => {
+  const context = useContext(GlobalContex);
 
   return context;
 };
 
-export { ModalProvider, useModal };
+export { GlobalProvider, useGlobal };
