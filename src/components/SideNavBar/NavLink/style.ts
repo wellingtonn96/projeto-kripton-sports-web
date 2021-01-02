@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { Link } from 'react-router-dom';
 
@@ -28,7 +28,7 @@ export const Container = styled(Link)<IContainerProps>`
     ${(props) =>
       props.subMenuSelected &&
       css`
-        background-color: #555555;
+        background-color: #3a3a3a;
         border-left: 5px solid red;
         color: #ffffff;
 
@@ -38,7 +38,7 @@ export const Container = styled(Link)<IContainerProps>`
       `}
 
     &:hover {
-      background-color: #555555;
+      background-color: #3a3a3a;
       border-left: 5px solid red;
       color: #ffffff;
 
@@ -60,7 +60,7 @@ export const Container = styled(Link)<IContainerProps>`
 `;
 
 export const SubMenuLinks = styled.ul<IContainerProps>`
-  display: ${(props) => (props.subMenuSelected ? 'none' : 'fex')};
+  display: flex;
   background-color: #1a1a1a;
   font-weight: 100;
   transition: 2s;

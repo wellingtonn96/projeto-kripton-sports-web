@@ -8,58 +8,6 @@ export const FormContainer = styled.div`
     0 3px 6px 0 rgba(0, 0, 0, 0.065) !important;
 `;
 
-export const FormHeader = styled.div`
-  margin-top: 40px;
-  display: flex;
-  align-items: center;
-  padding-bottom: 20px;
-  border-bottom: 2px solid gray;
-
-  i {
-    font-size: 18px;
-    margin-right: 10px;
-  }
-
-  h4 {
-    font-size: 18px;
-    text-transform: uppercase;
-    font-weight: 400;
-  }
-`;
-
-export const FormGroup = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 20px 0px;
-
-  input,
-  select {
-    width: 80%;
-    height: 40px;
-    font-size: 16px;
-    color: #494949;
-    border-radius: 5px;
-    border: 1px solid gray;
-    padding: 20px;
-    background: none;
-
-    @media (max-width: 760px) {
-      width: 280px;
-    }
-  }
-
-  div {
-    width: 100px;
-    margin-left: 10px;
-    font-size: 14px;
-    color: gray;
-    text-transform: uppercase;
-    margin-right: 25px;
-    flex: 1;
-  }
-`;
-
 export const ButtonGroup = styled.div`
   display: flex;
   margin-top: 20px;

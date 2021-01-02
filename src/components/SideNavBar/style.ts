@@ -11,6 +11,7 @@ export const Container = styled.aside<IPropsContainer>`
   background-color: #222222;
   font-weight: 500;
   left: ${({ sideBar }) => (sideBar ? '0' : '-100%')};
+  z-index: 10;
 
   div {
     position: relative;
