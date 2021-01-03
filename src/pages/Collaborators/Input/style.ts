@@ -35,18 +35,19 @@ export const InputField = styled.div<IPropsInputField>`
     border: 1px solid gray;
     padding: 20px;
     background: none;
-    outline: 3px solid transparent;
 
     ${(props) =>
       props.isErrored &&
       css`
-        outline-color: #f3acac;
+        border-color: #c53030;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 5px #c53030;
       `}
 
     ${(props) =>
       props.isFocused &&
       css`
-        outline-color: #99e0ff;
+        border-color: #57b0fa;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 5px #57b0fa;
       `}
 
 
