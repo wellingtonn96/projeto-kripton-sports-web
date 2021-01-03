@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { FiAlertCircle } from 'react-icons/fi';
 
 import { Container, InputField } from './style';
@@ -9,13 +9,32 @@ interface IPropsInput extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Input: React.FC<IPropsInput> = ({ label, error, ...rest }) => {
+  const [isFocused, setIsFocused] = useState(false);
+
+  const handleInput = useCallback(() => {
+    setIsFocused(true);
+  }, []);
+
+  const handleInputBlur = useCallback(() => {
+    setIsFocused(false);
+  }, []);
+
   return (
     <Container>
       <div>
-        <span>{label}</span>
+        {error ? (
+          <span style={{ color: '#c53030' }}>{label}</span>
+        ) : (
+          <span>{label}</span>
+        )}
       </div>
-      <InputField>
-        <input type="text" {...rest} />
+      <InputField isErrored={!!error} isFocused={isFocused}>
+        <input
+          onFocus={handleInput}
+          onBlur={handleInputBlur}
+          type="text"
+          {...rest}
+        />
         {error && (
           <div>
             <FiAlertCircle size={18} color="#c53030" />

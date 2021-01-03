@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
@@ -17,7 +17,12 @@ export const Container = styled.div`
   }
 `;
 
-export const InputField = styled.div`
+interface IPropsInputField {
+  isErrored: boolean;
+  isFocused: boolean;
+}
+
+export const InputField = styled.div<IPropsInputField>`
   width: 80%;
 
   input,
@@ -30,7 +35,20 @@ export const InputField = styled.div`
     border: 1px solid gray;
     padding: 20px;
     background: none;
-    z-index: -1;
+    outline: 3px solid transparent;
+
+    ${(props) =>
+      props.isErrored &&
+      css`
+        outline-color: #f3acac;
+      `}
+
+    ${(props) =>
+      props.isFocused &&
+      css`
+        outline-color: #99e0ff;
+      `}
+
 
     @media (max-width: 760px) {
       width: 280px;
