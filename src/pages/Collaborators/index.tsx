@@ -5,12 +5,12 @@ import { FiUser } from 'react-icons/fi';
 import * as Yup from 'yup';
 import { Container } from './style';
 
-import Input from './Input';
-import InputSelect from './InputSelect';
-import FormHeader from './FormHeader';
-import ButtonCancel from './ButtonCancel';
-import ButtonSave from './ButtonSave';
-import ButtonGroup from './ButtonGroup';
+import Input from '../../components/Input';
+import InputSelect from '../../components/InputSelect';
+import FormHeader from '../../components/FormHeader';
+import ButtonCancel from '../../components/ButtonCancel';
+import ButtonSave from '../../components/ButtonSave';
+import ButtonGroup from '../../components/ButtonGroup';
 
 import { Errors, getValidationErrors } from '../../utils/getValidationErros';
 
@@ -63,8 +63,6 @@ const Collaborators: React.FC = () => {
           const getErrors = getValidationErrors(err);
 
           setErrors(getErrors);
-
-          console.log(getErrors);
         }
       }
     },
@@ -146,14 +144,16 @@ const Collaborators: React.FC = () => {
           name="userType"
           value={typeUser}
           onChange={(e) => setTypeUser(e.target.value)}
+          error={errors.typeUser}
         >
+          <option value="">Selecione o tipo de colaborador</option>
           <option value="1">GERENTE</option>
           <option value="2">VENDEDOR</option>
         </InputSelect>
 
         <ButtonGroup>
-          <ButtonCancel />
           <ButtonSave />
+          <ButtonCancel />
         </ButtonGroup>
       </form>
     </Container>
