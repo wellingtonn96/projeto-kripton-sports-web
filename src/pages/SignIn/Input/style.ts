@@ -21,7 +21,7 @@ export const InputField = styled.div<InputProps>`
   margin-bottom: 20px;
   border-radius: 50px;
   border: 2px solid #eeee;
-  color: #aaaaaa;
+  color: #797979;
 
   ${(props) =>
     props.IsFocused &&
@@ -51,7 +51,7 @@ export const InputField = styled.div<InputProps>`
     border: 0;
 
     &::placeholder {
-      color: #aaaaaa;
+      color: #797979;
     }
   }
 `;

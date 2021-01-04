@@ -8,9 +8,7 @@ import LogoImg from '../../assets/logo.png';
 
 import { Container, Content } from './style';
 
-interface Errors {
-  [key: string]: string;
-}
+import { Errors, getValidationErrors } from '../../utils/getValidationErros';
 
 const SignIn: React.FC = () => {
   const [login, setLogin] = useState('');
@@ -38,17 +36,13 @@ const SignIn: React.FC = () => {
         abortEarly: false,
       });
 
-      console.log(data);
-
       setErrors({});
     } catch (err) {
-      const validationErrors: Errors = {};
+      if (err instanceof Yup.ValidationError) {
+        const getErrors = getValidationErrors(err);
 
-      err.inner.forEach((error: Errors) => {
-        validationErrors[error.path] = error.message;
-      });
-
-      setErrors(validationErrors);
+        setErrors(getErrors);
+      }
     }
   };
 

@@ -8,6 +8,7 @@ export const Container = styled.header`
   background-color: #ffffff;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.065);
   padding: 20px;
+  z-index: 10;
 
   i {
     color: #888888;
