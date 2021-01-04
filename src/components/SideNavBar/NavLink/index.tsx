@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-import { Link } from 'react-router-dom';
 import { Container, SubMenuLinks } from './style';
 
 import { ISideNavBarData } from '../Data';
@@ -12,23 +11,30 @@ interface IPropsNavLink {
 const NavLink: React.FC<IPropsNavLink> = ({ item }) => {
   const [subMenu, setSubMenu] = useState(false);
   const [subMenuSelected, setSubMenuSelected] = useState(false);
+  const [action, setAction] = useState<'selected' | undefined>('selected');
 
   const showSubnav = () => {
     setSubMenu((prev) => !prev);
-    setSubMenuSelected((prev) => !prev);
+
+    if (item.subNav && !subMenu) {
+      setSubMenuSelected(true);
+    } else {
+      setSubMenuSelected(false);
+    }
   };
 
   useEffect(() => {
-    if (item.subNav && subMenu) {
-      setSubMenuSelected(true);
+    if (item.subNav) {
+      setAction(undefined);
     }
-  }, [subMenu, item.subNav]);
+  }, [item.subNav]);
 
   return (
     <>
       <Container
         to={item.path}
         onClick={showSubnav}
+        activeClassName={action}
         subMenuSelected={subMenuSelected}
       >
         <li>
@@ -41,14 +47,18 @@ const NavLink: React.FC<IPropsNavLink> = ({ item }) => {
       </Container>
       {subMenu &&
         item.subNav?.map((itemSubNav, index) => (
-          <SubMenuLinks key={index.toString()}>
-            <Link to={itemSubNav.path}>
+          <ul>
+            <SubMenuLinks
+              key={index.toString()}
+              to={itemSubNav.path}
+              activeClassName="selected"
+            >
               <li>
                 <i>{itemSubNav.icon}</i>
                 {itemSubNav.title}
               </li>
-            </Link>
-          </SubMenuLinks>
+            </SubMenuLinks>
+          </ul>
         ))}
     </>
   );
