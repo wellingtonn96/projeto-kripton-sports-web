@@ -66,12 +66,15 @@ export const SubMenuLinks = styled.ul<IContainerProps>`
   transition: 2s;
 
   li {
+    display: flex;
+    align-items: center;
     width: 100%;
+    height: 30px;
+    text-transform: capitalize;
     color: #aaaaaa;
-    padding: 10px;
 
     i {
-      margin-left: 5px;
+      margin-left: 20px;
       margin-right: 15px;
     }
 

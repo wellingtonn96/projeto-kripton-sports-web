@@ -3,11 +3,14 @@ import React, { useCallback, useState } from 'react';
 import { FiUser } from 'react-icons/fi';
 
 import * as Yup from 'yup';
-import { FormContainer, ButtonGroup, ButtonCancel, ButtonSave } from './style';
+import { Container } from './style';
 
 import Input from './Input';
 import InputSelect from './InputSelect';
 import FormHeader from './FormHeader';
+import ButtonCancel from './ButtonCancel';
+import ButtonSave from './ButtonSave';
+import ButtonGroup from './ButtonGroup';
 
 import { Errors, getValidationErrors } from '../../utils/getValidationErros';
 
@@ -56,18 +59,20 @@ const Collaborators: React.FC = () => {
 
         setErrors({});
       } catch (err) {
-        const getErrors = getValidationErrors(err);
+        if (err instanceof Yup.ValidationError) {
+          const getErrors = getValidationErrors(err);
 
-        setErrors(getErrors);
+          setErrors(getErrors);
 
-        console.log(getErrors);
+          console.log(getErrors);
+        }
       }
     },
     [name, lastname, email, phone, login, password, comfirmPass, typeUser]
   );
 
   return (
-    <FormContainer>
+    <Container>
       <h1>Cadastrar colaborador</h1>
       <form onSubmit={handleSubmit}>
         <FormHeader title="Informações Pessoais" icon={FiUser} />
@@ -147,11 +152,11 @@ const Collaborators: React.FC = () => {
         </InputSelect>
 
         <ButtonGroup>
-          <ButtonCancel type="button">cancelar</ButtonCancel>
-          <ButtonSave type="submit">salvar</ButtonSave>
+          <ButtonCancel />
+          <ButtonSave />
         </ButtonGroup>
       </form>
-    </FormContainer>
+    </Container>
   );
 };
 

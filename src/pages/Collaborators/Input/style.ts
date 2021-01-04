@@ -35,19 +35,20 @@ export const InputField = styled.div<IPropsInputField>`
     border: 1px solid gray;
     padding: 20px;
     background: none;
+    transition: all 0.3s ease-in-out;
 
     ${(props) =>
       props.isErrored &&
       css`
-        border-color: #c53030;
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 5px #c53030;
+        border-color: #f79ea6;
+        box-shadow: 0 0 5px #f79ea6;
       `}
 
     ${(props) =>
       props.isFocused &&
       css`
-        border-color: #57b0fa;
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 5px #57b0fa;
+        border-color: rgba(81, 203, 238, 1);
+        box-shadow: 0 0 5px rgba(81, 203, 238, 1);
       `}
 
 
@@ -55,6 +56,7 @@ export const InputField = styled.div<IPropsInputField>`
       width: 280px;
     }
   }
+
   div {
     display: flex;
     align-items: center;
@@ -64,7 +66,6 @@ export const InputField = styled.div<IPropsInputField>`
     p {
       font-size: 14px;
       color: #c53030;
-      font-weight: 500;
       margin-left: 5px;
       text-transform: uppercase;
     }
