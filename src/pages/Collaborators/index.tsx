@@ -7,12 +7,14 @@ import { Container } from './style';
 
 import Input from '../../components/Input';
 import InputSelect from '../../components/InputSelect';
+import InputTextArea from '../../components/InputTextArea';
 import FormHeader from '../../components/FormHeader';
 import ButtonCancel from '../../components/ButtonCancel';
 import ButtonSave from '../../components/ButtonSave';
 import ButtonGroup from '../../components/ButtonGroup';
 
 import { Errors, getValidationErrors } from '../../utils/getValidationErros';
+import AvatarUpload from '../../components/AvatarUpload';
 
 const Collaborators: React.FC = () => {
   const [name, setName] = useState('');
@@ -23,6 +25,7 @@ const Collaborators: React.FC = () => {
   const [password, setPassword] = useState('');
   const [comfirmPass, setComfirmPass] = useState('');
   const [typeUser, setTypeUser] = useState('');
+  const [description, setDescription] = useState('');
   const [errors, setErrors] = useState<Errors>({});
 
   const handleSubmit = useCallback(
@@ -74,6 +77,8 @@ const Collaborators: React.FC = () => {
       <h1>Cadastrar colaborador</h1>
       <form onSubmit={handleSubmit}>
         <FormHeader title="Informações Pessoais" icon={FiUser} />
+
+        <AvatarUpload label="Imagem de perfil" name="avatar_id" />
 
         <Input
           name="name"
@@ -150,6 +155,15 @@ const Collaborators: React.FC = () => {
           <option value="1">GERENTE</option>
           <option value="2">VENDEDOR</option>
         </InputSelect>
+
+        <InputTextArea
+          label="Telefone"
+          name="phone"
+          type="text"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          error={errors.phone}
+        />
 
         <ButtonGroup>
           <ButtonSave />
