@@ -1,20 +1,32 @@
 import styled, { css } from 'styled-components';
 
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-interface IContainerProps {
-  subMenuSelected?: boolean;
+interface IPropsContainer {
+  subMenuSelected: boolean;
 }
 
-export const Container = styled(Link)<IContainerProps>`
+export const Container = styled(NavLink)<IPropsContainer>`
   text-decoration: none;
   font-size: 15px;
-  color: #888888;
+  color: #9b9b9b;
   text-transform: capitalize;
   font-weight: 100;
 
+  &.selected {
+    li {
+      background-color: #4e4e4e;
+      border-left: 5px solid red;
+      color: #fff8f8;
+
+      svg {
+        color: white;
+      }
+    }
+  }
+
   svg {
-    color: #888888;
+    color: #9b9b9b;
   }
 
   li {
@@ -23,24 +35,24 @@ export const Container = styled(Link)<IContainerProps>`
     align-items: center;
     list-style: none;
     padding: 10px;
-    border-bottom: 1px solid #3a3a3a;
+    border-bottom: 1px solid #1e1e1e;
 
     ${(props) =>
       props.subMenuSelected &&
       css`
-        background-color: #3a3a3a;
+        background-color: #4e4e4e;
         border-left: 5px solid red;
-        color: #ffffff;
+        color: #fff8f8;
 
         svg {
-          color: #ffffff;
+          color: white;
         }
       `}
 
     &:hover {
-      background-color: #3a3a3a;
+      background-color: #4e4e4e;
       border-left: 5px solid red;
-      color: #ffffff;
+      color: #fff8f8;
 
       svg {
         color: white;
@@ -59,11 +71,21 @@ export const Container = styled(Link)<IContainerProps>`
   }
 `;
 
-export const SubMenuLinks = styled.ul<IContainerProps>`
+export const SubMenuLinks = styled(NavLink)`
   display: flex;
   background-color: #1a1a1a;
   font-weight: 100;
   transition: 2s;
+
+  &.selected {
+    li {
+      color: #fff8f8;
+
+      svg {
+        color: #fff8f8;
+      }
+    }
+  }
 
   li {
     display: flex;
@@ -71,7 +93,7 @@ export const SubMenuLinks = styled.ul<IContainerProps>`
     width: 100%;
     height: 30px;
     text-transform: capitalize;
-    color: #aaaaaa;
+    color: #9b9b9b;
 
     i {
       margin-left: 20px;
@@ -79,7 +101,7 @@ export const SubMenuLinks = styled.ul<IContainerProps>`
     }
 
     &:hover {
-      color: #ffffff;
+      color: #fff8f8;
 
       svg {
         color: white;

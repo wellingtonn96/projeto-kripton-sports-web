@@ -8,7 +8,7 @@ export const Container = styled.aside<IPropsContainer>`
   position: fixed;
   width: 250px;
   height: 100vh;
-  background-color: #222222;
+  background-color: #2a2a2a;
   font-weight: 500;
   left: ${({ sideBar }) => (sideBar ? '0' : '-100%')};
   z-index: 10;

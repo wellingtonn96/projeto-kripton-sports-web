@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { ChangeEvent, useCallback, useState } from 'react';
 
 import { FiUser } from 'react-icons/fi';
 
@@ -7,12 +7,14 @@ import { Container } from './style';
 
 import Input from '../../components/Input';
 import InputSelect from '../../components/InputSelect';
+import InputTextArea from '../../components/InputTextArea';
 import FormHeader from '../../components/FormHeader';
 import ButtonCancel from '../../components/ButtonCancel';
 import ButtonSave from '../../components/ButtonSave';
 import ButtonGroup from '../../components/ButtonGroup';
 
 import { Errors, getValidationErrors } from '../../utils/getValidationErros';
+import AvatarUpload from '../../components/AvatarUpload';
 
 const Collaborators: React.FC = () => {
   const [name, setName] = useState('');
@@ -23,7 +25,12 @@ const Collaborators: React.FC = () => {
   const [password, setPassword] = useState('');
   const [comfirmPass, setComfirmPass] = useState('');
   const [typeUser, setTypeUser] = useState('');
+  const [file, setFile] = useState<FileList>();
   const [errors, setErrors] = useState<Errors>({});
+
+  const uploadImage = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) setFile(e.target.files);
+  }, []);
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
@@ -74,6 +81,8 @@ const Collaborators: React.FC = () => {
       <h1>Cadastrar colaborador</h1>
       <form onSubmit={handleSubmit}>
         <FormHeader title="Informações Pessoais" icon={FiUser} />
+
+        <AvatarUpload name="avatar_id" file={file} onChange={uploadImage} />
 
         <Input
           name="name"
