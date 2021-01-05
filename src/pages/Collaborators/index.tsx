@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { ChangeEvent, useCallback, useState } from 'react';
 
 import { FiUser } from 'react-icons/fi';
 
@@ -25,8 +25,12 @@ const Collaborators: React.FC = () => {
   const [password, setPassword] = useState('');
   const [comfirmPass, setComfirmPass] = useState('');
   const [typeUser, setTypeUser] = useState('');
-  const [description, setDescription] = useState('');
+  const [file, setFile] = useState<FileList>();
   const [errors, setErrors] = useState<Errors>({});
+
+  const uploadImage = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) setFile(e.target.files);
+  }, []);
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
@@ -78,7 +82,7 @@ const Collaborators: React.FC = () => {
       <form onSubmit={handleSubmit}>
         <FormHeader title="Informações Pessoais" icon={FiUser} />
 
-        <AvatarUpload label="Imagem de perfil" name="avatar_id" />
+        <AvatarUpload name="avatar_id" file={file} onChange={uploadImage} />
 
         <Input
           name="name"
@@ -155,15 +159,6 @@ const Collaborators: React.FC = () => {
           <option value="1">GERENTE</option>
           <option value="2">VENDEDOR</option>
         </InputSelect>
-
-        <InputTextArea
-          label="Telefone"
-          name="phone"
-          type="text"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          error={errors.phone}
-        />
 
         <ButtonGroup>
           <ButtonSave />

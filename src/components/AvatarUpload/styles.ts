@@ -2,18 +2,18 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
+  height: 250px;
   justify-content: center;
-  margin: 30px 0;
+  align-items: center;
 
   label {
-    width: 80%;
-    display: flex;
-    justify-content: center;
+    width: 200px;
+    height: 200px;
     cursor: pointer;
     transition: opacity 0.2s;
     border: 0;
     color: #494949;
-    border-radius: 5px;
+    border-radius: 50%;
 
     padding: 5px;
 

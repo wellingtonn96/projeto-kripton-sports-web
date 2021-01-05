@@ -1,37 +1,25 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MdInsertPhoto } from 'react-icons/md';
 
 import { Container } from './styles';
 
 interface IAvatarUploadProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  label: string;
-  error?: string;
+  file: FileList | undefined;
 }
 
-const AvatarUpload: React.FC<IAvatarUploadProps> = ({
-  label,
-  error,
-  ...rest
-}) => {
+const AvatarUpload: React.FC<IAvatarUploadProps> = ({ file, ...rest }) => {
   const [preview, setPreview] = useState<string | ArrayBuffer | null>(null);
 
-  const uploadImage = (e: ChangeEvent<HTMLInputElement>) => {
-    const data = new FormData();
-
-    if (e.target.files) {
-      const file = e.target.files[0];
-      data.append('file', file);
-
+  useEffect(() => {
+    if (file) {
       const fileReader = new FileReader();
 
-      fileReader.onloadend = () => {
-        setPreview(fileReader.result);
-      };
+      fileReader.onloadend = () => setPreview(fileReader.result);
 
-      fileReader.readAsDataURL(file as Blob);
+      fileReader.readAsDataURL(file[0]);
     }
-  };
+  }, [file]);
 
   return (
     <Container>
@@ -46,13 +34,7 @@ const AvatarUpload: React.FC<IAvatarUploadProps> = ({
             </div>
           </>
         )}
-        <input
-          type="file"
-          id="avatar"
-          accept="image/*"
-          onChange={uploadImage}
-          {...rest}
-        />
+        <input type="file" id="avatar" accept="image/*" {...rest} />
       </label>
     </Container>
   );
