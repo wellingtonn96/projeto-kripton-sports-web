@@ -9,12 +9,14 @@ import Routes from './routes';
 
 import Toast from './components/Toast';
 
+import { messagesToast } from './components/Toast/Data';
+
 const App: React.FC = () => (
   <Router>
     <GlobalProvider>
       <GlobaStyle />
       <Routes />
-      <Toast />
+      <Toast messages={messagesToast} />
     </GlobalProvider>
   </Router>
 );
