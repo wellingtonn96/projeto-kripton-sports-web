@@ -17,7 +17,9 @@ const AvatarUpload: React.FC<IAvatarUploadProps> = ({ file, ...rest }) => {
 
       fileReader.onloadend = () => setPreview(fileReader.result);
 
-      fileReader.readAsDataURL(file[0]);
+      const fileBlob: Blob = file[0];
+
+      fileReader.readAsDataURL(fileBlob);
     }
   }, [file]);
 

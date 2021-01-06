@@ -7,11 +7,14 @@ import { GlobalProvider } from './hooks/Global';
 
 import Routes from './routes';
 
+import Toast from './components/Toast';
+
 const App: React.FC = () => (
   <Router>
     <GlobalProvider>
       <GlobaStyle />
       <Routes />
+      <Toast />
     </GlobalProvider>
   </Router>
 );

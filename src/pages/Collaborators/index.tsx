@@ -7,7 +7,6 @@ import { Container } from './style';
 
 import Input from '../../components/Input';
 import InputSelect from '../../components/InputSelect';
-import InputTextArea from '../../components/InputTextArea';
 import FormHeader from '../../components/FormHeader';
 import ButtonCancel from '../../components/ButtonCancel';
 import ButtonSave from '../../components/ButtonSave';
@@ -49,6 +48,12 @@ const Collaborators: React.FC = () => {
           typeUser: Yup.string().required('Campo obrigatório'),
         });
 
+        const formData = new FormData();
+
+        if (file) {
+          formData.append('file', file[0] as Blob);
+        }
+
         const data = {
           name,
           lastname,
@@ -58,7 +63,10 @@ const Collaborators: React.FC = () => {
           password,
           comfirmPass,
           typeUser,
+          file: formData,
         };
+
+        console.log(data);
 
         await schema.validate(data, {
           abortEarly: false,
@@ -73,7 +81,7 @@ const Collaborators: React.FC = () => {
         }
       }
     },
-    [name, lastname, email, phone, login, password, comfirmPass, typeUser]
+    [name, lastname, email, phone, login, password, comfirmPass, typeUser, file]
   );
 
   return (
