@@ -10,10 +10,13 @@ import { Container, Content } from './style';
 
 import { Errors, getValidationErrors } from '../../utils/getValidationErros';
 
+import { useToast } from '../../hooks/Toast';
+
 const SignIn: React.FC = () => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<Errors>({});
+  const { addToast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -34,6 +37,12 @@ const SignIn: React.FC = () => {
 
       await schema.validate(data, {
         abortEarly: false,
+      });
+
+      addToast({
+        type: 'success',
+        title: 'Sucesso!',
+        description: 'login efetuado com sucesso!',
       });
 
       setErrors({});

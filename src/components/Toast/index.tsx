@@ -2,19 +2,19 @@ import React from 'react';
 
 import ToastMessage from './ToastMessage';
 
-import { IMessageProps } from './Data';
+import { IMessageToastProps } from '../../hooks/Toast';
 
 import { Container } from './style';
 
 interface ToastProps {
-  messages: IMessageProps[];
+  messages: IMessageToastProps[];
 }
 
 const Toast: React.FC<ToastProps> = ({ messages }) => {
   return (
-    <Container>
-      {messages.map((item) => (
-        <ToastMessage message={item} />
+    <Container messagesExists={!!messages.length}>
+      {messages.map((item, index) => (
+        <ToastMessage key={index.toString()} message={item} />
       ))}
     </Container>
   );

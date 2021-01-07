@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback, useState } from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 
 import { FiUser } from 'react-icons/fi';
 
@@ -14,8 +14,11 @@ import ButtonGroup from '../../components/ButtonGroup';
 
 import { Errors, getValidationErrors } from '../../utils/getValidationErros';
 import AvatarUpload from '../../components/AvatarUpload';
+import { useToast } from '../../hooks/Toast';
 
 const Collaborators: React.FC = () => {
+  const { addToast } = useToast();
+
   const [name, setName] = useState('');
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
@@ -29,6 +32,14 @@ const Collaborators: React.FC = () => {
 
   const uploadImage = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) setFile(e.target.files);
+  }, []);
+
+  useEffect(() => {
+    addToast({
+      type: 'success',
+      title: 'Sucesso!',
+      description: 'login efetuado com sucesso!',
+    });
   }, []);
 
   const handleSubmit = useCallback(

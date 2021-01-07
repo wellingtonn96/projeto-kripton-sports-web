@@ -19,12 +19,20 @@ interface ToastProps {
   type?: 'success' | 'info' | 'error';
 }
 
-export const Container = styled.div`
+interface ContainerProps {
+  messagesExists: boolean;
+}
+
+export const Container = styled.div<ContainerProps>`
   position: fixed;
   right: 0;
   top: 0;
   padding: 30px;
-  z-index: 20;
+  ${(props) =>
+    props.messagesExists &&
+    css`
+      z-index: 20;
+    `};
 `;
 
 export const ToastMessage = styled.div<ToastProps>`

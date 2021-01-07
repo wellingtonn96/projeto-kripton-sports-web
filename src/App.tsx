@@ -7,17 +7,16 @@ import { GlobalProvider } from './hooks/Global';
 
 import Routes from './routes';
 
-import Toast from './components/Toast';
-
-import { messagesToast } from './components/Toast/Data';
+import { ToastProvider } from './hooks/Toast';
 
 const App: React.FC = () => (
   <Router>
-    <GlobalProvider>
-      <GlobaStyle />
-      <Routes />
-      <Toast messages={messagesToast} />
-    </GlobalProvider>
+    <ToastProvider>
+      <GlobalProvider>
+        <GlobaStyle />
+        <Routes />
+      </GlobalProvider>
+    </ToastProvider>
   </Router>
 );
 
