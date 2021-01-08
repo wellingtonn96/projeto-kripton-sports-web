@@ -40,7 +40,7 @@ const Collaborators: React.FC = () => {
       title: 'Sucesso!',
       description: 'login efetuado com sucesso!',
     });
-  }, []);
+  }, [addToast]);
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
