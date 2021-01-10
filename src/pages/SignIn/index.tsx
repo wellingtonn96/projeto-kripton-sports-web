@@ -11,12 +11,14 @@ import { Container, Content } from './style';
 import { Errors, getValidationErrors } from '../../utils/getValidationErros';
 
 import { useToast } from '../../hooks/Toast';
+import { useAuth } from '../../hooks/Auth';
 
 const SignIn: React.FC = () => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<Errors>({});
   const { addToast } = useToast();
+  const { signIn } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,7 +29,7 @@ const SignIn: React.FC = () => {
           .min(4, 'minino 4 digitos'),
         password: Yup.string()
           .required('Campo obrigatório')
-          .min(8, 'minimo 8 digitos'),
+          .min(6, 'minimo 8 digitos'),
       });
 
       const data = {
@@ -38,6 +40,8 @@ const SignIn: React.FC = () => {
       await schema.validate(data, {
         abortEarly: false,
       });
+
+      await signIn(data);
 
       addToast({
         type: 'success',
@@ -52,6 +56,12 @@ const SignIn: React.FC = () => {
 
         setErrors(getErrors);
       }
+
+      addToast({
+        title: 'Erro de autenticação!',
+        type: 'error',
+        description: 'Ocorreu um error ao se autenticar ',
+      });
     }
   };
 
