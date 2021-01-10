@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback, useState } from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 
 import { FiUser } from 'react-icons/fi';
 
@@ -7,7 +7,6 @@ import { Container } from './style';
 
 import Input from '../../components/Input';
 import InputSelect from '../../components/InputSelect';
-import InputTextArea from '../../components/InputTextArea';
 import FormHeader from '../../components/FormHeader';
 import ButtonCancel from '../../components/ButtonCancel';
 import ButtonSave from '../../components/ButtonSave';
@@ -15,8 +14,11 @@ import ButtonGroup from '../../components/ButtonGroup';
 
 import { Errors, getValidationErrors } from '../../utils/getValidationErros';
 import AvatarUpload from '../../components/AvatarUpload';
+import { useToast } from '../../hooks/Toast';
 
 const Collaborators: React.FC = () => {
+  const { addToast } = useToast();
+
   const [name, setName] = useState('');
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
@@ -31,6 +33,14 @@ const Collaborators: React.FC = () => {
   const uploadImage = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) setFile(e.target.files);
   }, []);
+
+  useEffect(() => {
+    addToast({
+      type: 'success',
+      title: 'Sucesso!',
+      description: 'login efetuado com sucesso!',
+    });
+  }, [addToast]);
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
@@ -49,6 +59,12 @@ const Collaborators: React.FC = () => {
           typeUser: Yup.string().required('Campo obrigatório'),
         });
 
+        const formData = new FormData();
+
+        if (file) {
+          formData.append('file', file[0] as Blob);
+        }
+
         const data = {
           name,
           lastname,
@@ -58,7 +74,10 @@ const Collaborators: React.FC = () => {
           password,
           comfirmPass,
           typeUser,
+          file: formData,
         };
+
+        console.log(data);
 
         await schema.validate(data, {
           abortEarly: false,
@@ -73,7 +92,7 @@ const Collaborators: React.FC = () => {
         }
       }
     },
-    [name, lastname, email, phone, login, password, comfirmPass, typeUser]
+    [name, lastname, email, phone, login, password, comfirmPass, typeUser, file]
   );
 
   return (

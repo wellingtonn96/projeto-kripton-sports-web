@@ -225,27 +225,32 @@ export const Card = styled.div`
 `;
 
 export const DataTable = styled.div`
+  position: relative;
   font-size: 18px;
   background-color: #ffffff;
   border-radius: 0 0 5px 5px;
   box-shadow: 0 8px 16px 0 rgba(40, 40, 90, 0.09),
     0 3px 6px 0 rgba(0, 0, 0, 0.065);
   margin-top: 20px;
+`;
+
+export const TableHeader = styled.div`
+  width: 100%;
+  padding: 15px 20px;
+  border-bottom: 1px solid #888888;
+
+  h1 {
+    font-size: 18px;
+    font-weight: 600;
+  }
+`;
+
+export const TableBody = styled.div`
+  padding: 20px;
 
   div {
-    padding: 15px 20px;
-    border-bottom: 2px solid #b1aaaa;
-
-    h1 {
-      font-size: 18px;
-      font-weight: 600;
-    }
-  }
-
-  div + div {
     overflow-x: auto;
     border-collapse: collapse;
-    padding: 20px;
 
     table {
       width: 100%;
@@ -254,8 +259,17 @@ export const DataTable = styled.div`
 
       td,
       th {
+        text-align: center;
         padding: 20px;
         border-top: 1px solid #dddddd;
+      }
+
+      th {
+        color: #888888;
+      }
+
+      td {
+        color: #999;
       }
     }
   }

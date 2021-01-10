@@ -15,9 +15,14 @@ export const Container = styled(NavLink)<IPropsContainer>`
 
   &.selected {
     li {
-      background-color: #4e4e4e;
-      border-left: 5px solid red;
+      background: rgb(137, 49, 48);
+      background: linear-gradient(
+        90deg,
+        rgba(137, 49, 48, 1) 0%,
+        rgba(219, 58, 58, 1) 100%
+      );
       color: #fff8f8;
+      transition: background-color 2s;
 
       svg {
         color: white;
@@ -36,12 +41,17 @@ export const Container = styled(NavLink)<IPropsContainer>`
     list-style: none;
     padding: 10px;
     border-bottom: 1px solid #1e1e1e;
+    transition: background-color 2s;
 
     ${(props) =>
       props.subMenuSelected &&
       css`
-        background-color: #4e4e4e;
-        border-left: 5px solid red;
+        background: rgb(137, 49, 48);
+        background: linear-gradient(
+          90deg,
+          rgba(137, 49, 48, 1) 0%,
+          rgba(219, 58, 58, 1) 100%
+        );
         color: #fff8f8;
 
         svg {
@@ -50,8 +60,12 @@ export const Container = styled(NavLink)<IPropsContainer>`
       `}
 
     &:hover {
-      background-color: #4e4e4e;
-      border-left: 5px solid red;
+      background: rgb(137, 49, 48);
+      background: linear-gradient(
+        90deg,
+        rgba(137, 49, 48, 1) 0%,
+        rgba(219, 58, 58, 1) 100%
+      );
       color: #fff8f8;
 
       svg {
