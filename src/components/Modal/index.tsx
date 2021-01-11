@@ -1,31 +1,33 @@
 import React, { useCallback, useEffect, useRef } from 'react';
-import { useAuth } from '../../hooks/Auth';
+
 import { useModal } from '../../hooks/Modal';
 
-import { LightBox, ModalWrapper, CloseModalButton, Header } from './style';
+import {
+  LightBox,
+  ModalWrapper,
+  CloseModalButton,
+  Header,
+  Content,
+  Footer,
+} from './style';
 
-interface ModalProps {
-  header: string;
-}
-
-export const Modal: React.FC<ModalProps> = ({ header, children }) => {
-  const { showModal, openModal } = useModal();
-  const { signOut } = useAuth();
+export const Modal: React.FC = () => {
+  const { alert, removeAlert } = useModal();
   const modalRef = useRef<HTMLDivElement>(null);
 
   const closeModal = (e: React.MouseEvent) => {
     if (modalRef.current === e.target) {
-      openModal();
+      removeAlert();
     }
   };
 
   const keyPress = useCallback(
     (e) => {
-      if (e.key === 'Escape' && showModal) {
-        openModal();
+      if (e.key === 'Escape' && alert) {
+        removeAlert();
       }
     },
-    [showModal, openModal]
+    [alert, removeAlert]
   );
 
   useEffect(() => {
@@ -35,14 +37,24 @@ export const Modal: React.FC<ModalProps> = ({ header, children }) => {
 
   return (
     <>
-      {showModal && (
+      {alert && (
         <LightBox onClick={closeModal} ref={modalRef}>
           <ModalWrapper>
             <Header>
-              <h1>{header}</h1>
-              <CloseModalButton onClick={openModal} />
+              <h1>{alert.title}</h1>
+              <CloseModalButton onClick={() => removeAlert()} />
             </Header>
-            {children}
+            <Content>
+              <p>{alert.description}</p>
+            </Content>
+            <Footer>
+              <button type="button" onClick={alert.button.onClick}>
+                {alert.button.title}
+              </button>
+              <button onClick={removeAlert} type="button">
+                Cancelar
+              </button>
+            </Footer>
           </ModalWrapper>
         </LightBox>
       )}

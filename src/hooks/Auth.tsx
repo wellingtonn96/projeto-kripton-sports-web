@@ -1,5 +1,4 @@
 import React, { createContext, useCallback, useContext, useState } from 'react';
-import { Redirect } from 'react-router-dom';
 
 import api from '../services/api';
 
@@ -12,6 +11,7 @@ interface AuthContextData {
   signIn(creadentials: SignCredentials): Promise<void>;
   signOut(): void;
   user: UserType;
+  token: string;
 }
 
 interface AuthState {
@@ -53,7 +53,10 @@ const AuthProvider: React.FC = ({ children }) => {
     const { token, collaborator } = response.data;
 
     localStorage.setItem('@KriptonSportsSuplementos:token', token);
-    localStorage.setItem('@kriptonSportsSuplementos:user', collaborator);
+    localStorage.setItem(
+      '@KriptonSportsSuplementos:user',
+      JSON.stringify(collaborator)
+    );
 
     setData({ token, user: collaborator });
   }, []);
@@ -62,11 +65,13 @@ const AuthProvider: React.FC = ({ children }) => {
     localStorage.removeItem('@KriptonSportsSuplementos:token');
     localStorage.removeItem('@KriptonSportsSuplementos:user');
 
-    return <Redirect to="/" />;
+    setData({} as AuthState);
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{ user: data.user, token: data.token, signIn, signOut }}
+    >
       {children}
     </AuthContext.Provider>
   );

@@ -1,21 +1,35 @@
 import React, { createContext, useContext, useState } from 'react';
 
 interface ModalContextData {
-  showModal: boolean;
-  openModal(): void;
+  removeAlert(): void;
+  comfirmAlert(item: AlertProps): void;
+  alert: AlertProps | null;
 }
 
 const ModalContex = createContext({} as ModalContextData);
 
-const ModalProvider: React.FC = ({ children }) => {
-  const [showModal, setShowModal] = useState(false);
+interface AlertProps {
+  title: string;
+  description: string;
+  button: {
+    title: string;
+    onClick(): void;
+  };
+}
 
-  const openModal = () => {
-    setShowModal((prev) => !prev);
+const ModalProvider: React.FC = ({ children }) => {
+  const [alert, setAlert] = useState<AlertProps | null>(null);
+
+  const removeAlert = () => {
+    setAlert(null);
+  };
+
+  const comfirmAlert = (item: AlertProps) => {
+    setAlert(item);
   };
 
   return (
-    <ModalContex.Provider value={{ showModal, openModal }}>
+    <ModalContex.Provider value={{ removeAlert, comfirmAlert, alert }}>
       {children}
     </ModalContex.Provider>
   );

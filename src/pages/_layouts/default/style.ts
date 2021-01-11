@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { shade } from 'polished';
 
 export const Container = styled.div`
   width: 100%;
@@ -36,42 +35,5 @@ export const Footer = styled.div`
   @media (max-width: 760px) {
     width: 100%;
     margin-top: 0;
-  }
-`;
-
-export const ContentModal = styled.div`
-  padding: 20px 30px;
-  border-bottom: 2px solid #eeee;
-`;
-
-export const FooterModal = styled.div`
-  padding: 20px;
-  display: flex;
-  flex-direction: row-reverse;
-
-  button {
-    padding: 10px;
-    border-radius: 5px;
-    border: 0;
-    text-transform: capitalize;
-    right: 0;
-    margin-left: 5px;
-    background: #f40e0e;
-    color: white;
-    transition: background-color 0.3s;
-
-    &:hover {
-      background: ${shade(0.2, '#F40E0E')};
-    }
-  }
-
-  button + button {
-    background: #cccc;
-    color: #111111;
-    transition: background-color 0.3s;
-
-    &:hover {
-      background: ${shade(0.2, '#cccc')};
-    }
   }
 `;
