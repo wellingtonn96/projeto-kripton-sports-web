@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+
+import Route from './Routes';
 
 import Sigin from '../pages/SignIn';
 import Dashbaord from '../pages/Dashboard';
@@ -11,8 +13,8 @@ const Routes: React.FC = () => (
   <Switch>
     <Route path="/" exact component={Sigin} />
     <DefaultLayout>
-      <Route path="/dashboard" component={Dashbaord} />
-      <Route path="/collaborators" component={Collaborators} />
+      <Route path="/dashboard" component={Dashbaord} isPrivate />
+      <Route path="/collaborators" component={Collaborators} isPrivate />
     </DefaultLayout>
   </Switch>
 );

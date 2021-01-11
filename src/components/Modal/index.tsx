@@ -1,20 +1,16 @@
 import React, { useCallback, useEffect, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../hooks/Auth';
+import { useModal } from '../../hooks/Modal';
 
-import { useGlobal } from '../../hooks/Global';
+import { LightBox, ModalWrapper, CloseModalButton, Header } from './style';
 
-import {
-  LightBox,
-  ModalWrapper,
-  CloseModalButton,
-  Header,
-  Content,
-  Footer,
-} from './style';
+interface ModalProps {
+  header: string;
+}
 
-export const Modal: React.FC = () => {
-  const history = useHistory();
-  const { showModal, openModal } = useGlobal();
+export const Modal: React.FC<ModalProps> = ({ header, children }) => {
+  const { showModal, openModal } = useModal();
+  const { signOut } = useAuth();
   const modalRef = useRef<HTMLDivElement>(null);
 
   const closeModal = (e: React.MouseEvent) => {
@@ -43,20 +39,10 @@ export const Modal: React.FC = () => {
         <LightBox onClick={closeModal} ref={modalRef}>
           <ModalWrapper>
             <Header>
-              <h1>Sair da sessão?</h1>
-              <CloseModalButton onClick={() => openModal()} />
+              <h1>{header}</h1>
+              <CloseModalButton onClick={openModal} />
             </Header>
-            <Content>
-              <p>Deseja realmente sair da sessão</p>
-            </Content>
-            <Footer>
-              <button type="button" onClick={() => history.push('/')}>
-                Sair
-              </button>
-              <button onClick={() => openModal()} type="button">
-                Cancelar
-              </button>
-            </Footer>
+            {children}
           </ModalWrapper>
         </LightBox>
       )}

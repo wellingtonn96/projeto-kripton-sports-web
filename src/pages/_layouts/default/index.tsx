@@ -1,6 +1,13 @@
 import React from 'react';
 
-import { Container, Main, Footer, Content } from './style';
+import {
+  Container,
+  Main,
+  Footer,
+  Content,
+  FooterModal,
+  ContentModal,
+} from './style';
 
 import Header from '../../../components/Header';
 
@@ -9,14 +16,27 @@ import Header from '../../../components/Header';
 import SideNavBar from '../../../components/SideNavBar';
 
 import { Modal } from '../../../components/Modal';
-import { useGlobal } from '../../../hooks/Global';
+import { useSideBar } from '../../../hooks/SideBar';
+import { useModal } from '../../../hooks/Modal';
 
 const DefaultLayout: React.FC = ({ children }) => {
-  const { showSideBar } = useGlobal();
+  const { showSideBar } = useSideBar();
+  const { openModal } = useModal();
 
   return (
     <>
-      <Modal />
+      <Modal header="Sair da sessão">
+        <ContentModal>
+          <p>Deseja realmente sair da sessão?</p>
+        </ContentModal>
+        <FooterModal>
+          <button type="button">Sair</button>
+          <button onClick={openModal} type="button">
+            Cancelar
+          </button>
+        </FooterModal>
+      </Modal>
+
       <Container>
         <SideNavBar />
         <Main showSideBar={showSideBar}>
