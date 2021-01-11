@@ -1,8 +1,9 @@
-import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import React, { ChangeEvent, useCallback, useState } from 'react';
 
 import { FiUser } from 'react-icons/fi';
 
 import * as Yup from 'yup';
+
 import { Container } from './style';
 
 import Input from '../../components/Input';
@@ -15,9 +16,12 @@ import ButtonGroup from '../../components/ButtonGroup';
 import { Errors, getValidationErrors } from '../../utils/getValidationErros';
 import AvatarUpload from '../../components/AvatarUpload';
 import { useToast } from '../../hooks/Toast';
+import { useAuth } from '../../hooks/Auth';
+import api from '../../services/api';
 
 const Collaborators: React.FC = () => {
   const { addToast } = useToast();
+  const { token } = useAuth();
 
   const [name, setName] = useState('');
   const [lastname, setLastname] = useState('');
@@ -25,7 +29,7 @@ const Collaborators: React.FC = () => {
   const [phone, setPhone] = useState('');
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
-  const [comfirmPass, setComfirmPass] = useState('');
+  const [confirmPass, setComfirmPass] = useState('');
   const [typeUser, setTypeUser] = useState('');
   const [file, setFile] = useState<FileList>();
   const [errors, setErrors] = useState<Errors>({});
@@ -33,14 +37,6 @@ const Collaborators: React.FC = () => {
   const uploadImage = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) setFile(e.target.files);
   }, []);
-
-  useEffect(() => {
-    addToast({
-      type: 'success',
-      title: 'Sucesso!',
-      description: 'login efetuado com sucesso!',
-    });
-  }, [addToast]);
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
@@ -55,7 +51,7 @@ const Collaborators: React.FC = () => {
           phone: Yup.string().required('Campo obrigatório'),
           login: Yup.string().required('Campo obrigatório'),
           password: Yup.string().required('Campo obrigatório'),
-          comfirmPass: Yup.string().required('Campo obrigatório'),
+          confirmPass: Yup.string().required('Campo obrigatório'),
           typeUser: Yup.string().required('Campo obrigatório'),
         });
 
@@ -66,21 +62,41 @@ const Collaborators: React.FC = () => {
         }
 
         const data = {
-          name,
-          lastname,
-          email,
-          phone,
           login,
-          password,
-          comfirmPass,
-          typeUser,
-          file: formData,
+          senhaEncrypt: password,
+          email,
+          nome: name,
+          sobrenome: lastname,
+          telefone: phone,
+          idTipo: parseFloat(typeUser),
         };
 
-        console.log(data);
+        await schema.validate(
+          {
+            name,
+            lastname,
+            email,
+            phone,
+            login,
+            password,
+            typeUser,
+            confirmPass,
+          },
+          {
+            abortEarly: false,
+          }
+        );
 
-        await schema.validate(data, {
-          abortEarly: false,
+        await api.post('collaborators', data, {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        });
+
+        addToast({
+          type: 'success',
+          title: 'Sucesso!',
+          description: 'Colaborador cadastrado com sucesso!',
         });
 
         setErrors({});
@@ -89,10 +105,28 @@ const Collaborators: React.FC = () => {
           const getErrors = getValidationErrors(err);
 
           setErrors(getErrors);
+        } else {
+          addToast({
+            type: 'error',
+            title: 'Erro!',
+            description: 'Ocorreu algum erro ao cadastrar colaborador!',
+          });
         }
       }
     },
-    [name, lastname, email, phone, login, password, comfirmPass, typeUser, file]
+    [
+      name,
+      lastname,
+      email,
+      phone,
+      login,
+      password,
+      typeUser,
+      confirmPass,
+      file,
+      token,
+      addToast,
+    ]
   );
 
   return (
@@ -123,7 +157,6 @@ const Collaborators: React.FC = () => {
         <Input
           name="name"
           label="Email"
-          type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           error={errors.email}
@@ -160,11 +193,11 @@ const Collaborators: React.FC = () => {
 
         <Input
           label="Comfirmar senha"
-          name="comfirmPass"
+          name="confirmPass"
           type="password"
-          value={comfirmPass}
+          value={confirmPass}
           onChange={(e) => setComfirmPass(e.target.value)}
-          error={errors.comfirmPass}
+          error={errors.confirmPass}
         />
 
         <InputSelect

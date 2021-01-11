@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
 
-import { useGlobal } from '../../hooks/Global';
+import { useModal } from '../../hooks/Modal';
 
 import {
   LightBox,
@@ -13,23 +12,22 @@ import {
 } from './style';
 
 export const Modal: React.FC = () => {
-  const history = useHistory();
-  const { showModal, openModal } = useGlobal();
+  const { alert, removeAlert } = useModal();
   const modalRef = useRef<HTMLDivElement>(null);
 
   const closeModal = (e: React.MouseEvent) => {
     if (modalRef.current === e.target) {
-      openModal();
+      removeAlert();
     }
   };
 
   const keyPress = useCallback(
     (e) => {
-      if (e.key === 'Escape' && showModal) {
-        openModal();
+      if (e.key === 'Escape' && alert) {
+        removeAlert();
       }
     },
-    [showModal, openModal]
+    [alert, removeAlert]
   );
 
   useEffect(() => {
@@ -39,21 +37,21 @@ export const Modal: React.FC = () => {
 
   return (
     <>
-      {showModal && (
+      {alert && (
         <LightBox onClick={closeModal} ref={modalRef}>
           <ModalWrapper>
             <Header>
-              <h1>Sair da sessão?</h1>
-              <CloseModalButton onClick={() => openModal()} />
+              <h1>{alert.title}</h1>
+              <CloseModalButton onClick={() => removeAlert()} />
             </Header>
             <Content>
-              <p>Deseja realmente sair da sessão</p>
+              <p>{alert.description}</p>
             </Content>
             <Footer>
-              <button type="button" onClick={() => history.push('/')}>
-                Sair
+              <button type="button" onClick={alert.button.onClick}>
+                {alert.button.title}
               </button>
-              <button onClick={() => openModal()} type="button">
+              <button onClick={removeAlert} type="button">
                 Cancelar
               </button>
             </Footer>

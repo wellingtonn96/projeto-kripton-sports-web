@@ -9,10 +9,10 @@ import Header from '../../../components/Header';
 import SideNavBar from '../../../components/SideNavBar';
 
 import { Modal } from '../../../components/Modal';
-import { useGlobal } from '../../../hooks/Global';
+import { useSideBar } from '../../../hooks/SideBar';
 
 const DefaultLayout: React.FC = ({ children }) => {
-  const { showSideBar } = useGlobal();
+  const { showSideBar } = useSideBar();
 
   return (
     <>
@@ -24,7 +24,11 @@ const DefaultLayout: React.FC = ({ children }) => {
           <Content>{children}</Content>
 
           <Footer>
-            <p>Krypton Suplementos © 2020 | Todos os direitos reservados.</p>
+            <p>
+              {`Krypton Suplementos © ${new Date()
+                .getFullYear()
+                .toString()} | Todos os direitos reservados`}
+            </p>
           </Footer>
         </Main>
       </Container>

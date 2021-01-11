@@ -23,6 +23,10 @@ const ToastMessage: React.FC<IToastPropsMessage> = ({ message }) => {
     error: <FiAlertCircle size={24} />,
   };
 
+  setInterval(() => {
+    removeToast(message.id);
+  }, 1000);
+
   return (
     <Container type={message.type}>
       {icon[message.type || 'info']}

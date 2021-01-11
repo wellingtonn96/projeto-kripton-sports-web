@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { FaBell, FaSearch, FaBars } from 'react-icons/fa';
 
@@ -7,17 +7,34 @@ import { FiSettings } from 'react-icons/fi';
 import { AiOutlineLogout, AiFillAccountBook } from 'react-icons/ai';
 import { Container, HeaderDropDown, InputSearch } from './style';
 import perfilImg from '../../assets/img_ws.jpg';
-import { useGlobal } from '../../hooks/Global';
+import { useSideBar } from '../../hooks/SideBar';
+import { useModal } from '../../hooks/Modal';
 
 import HeaderMenuDropDown from './HeaderMenuDropdown';
 
 const Header: React.FC = () => {
   const [showDropDown, setShowDropDown] = useState(false);
-  const { openModal, showOrHideSideBar } = useGlobal();
+  const { showOrHideSideBar } = useSideBar();
+  const { comfirmAlert } = useModal();
 
   const openDropDown = () => {
     setShowDropDown((prev) => !prev);
   };
+
+  const handleMessage = () => {
+    alert('clicked');
+  };
+
+  const handleModal = useCallback(() => {
+    comfirmAlert({
+      title: 'Sair da sessão!',
+      description: 'Deseja realmente sair da sessão?',
+      button: {
+        title: 'Sair',
+        onClick: () => handleMessage(),
+      },
+    });
+  }, [comfirmAlert]);
 
   return (
     <>
@@ -72,7 +89,7 @@ const Header: React.FC = () => {
                 </i>
                 Setting
               </li>
-              <li onClick={openModal} role="presentation">
+              <li onClick={handleModal} role="presentation">
                 <i>
                   <AiOutlineLogout />
                 </i>
