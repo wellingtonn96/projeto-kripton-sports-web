@@ -4,8 +4,6 @@ import { Container, Main, Footer, Content } from './style';
 
 import Header from '../../../components/Header';
 
-// import SideBar from '../../../components/SideBar';
-
 import SideNavBar from '../../../components/SideNavBar';
 
 import { Modal } from '../../../components/Modal';

@@ -31,23 +31,10 @@ export const SideNavBarData: ISideNavBarData[] = [
   },
   {
     title: 'colaboradores',
-    path: '#',
+    path: '/collaborators',
     icon: <FaIcons.FaUsers />,
     iconOpened: <IoIcons.IoIosArrowBack />,
     iconClosed: <IoIcons.IoIosArrowDown />,
-
-    subNav: [
-      {
-        title: 'cadastrar colaborador',
-        path: '/collaborators',
-        icon: <FaIcons.FaRegCircle size={10} />,
-      },
-      {
-        title: 'Revenue',
-        path: '/overview/revenue',
-        icon: <FaIcons.FaRegCircle size={10} />,
-      },
-    ],
   },
   {
     title: 'PDV',

@@ -11,18 +11,21 @@ import { useSideBar } from '../../hooks/SideBar';
 import { useModal } from '../../hooks/Modal';
 
 import HeaderMenuDropDown from './HeaderMenuDropdown';
+import { useAuth } from '../../hooks/Auth';
 
 const Header: React.FC = () => {
+  const { signOut } = useAuth();
   const [showDropDown, setShowDropDown] = useState(false);
   const { showOrHideSideBar } = useSideBar();
-  const { comfirmAlert } = useModal();
+  const { comfirmAlert, removeAlert } = useModal();
+
+  const handleSignOut = useCallback(() => {
+    signOut();
+    removeAlert();
+  }, [signOut, removeAlert]);
 
   const openDropDown = () => {
     setShowDropDown((prev) => !prev);
-  };
-
-  const handleMessage = () => {
-    alert('clicked');
   };
 
   const handleModal = useCallback(() => {
@@ -31,10 +34,10 @@ const Header: React.FC = () => {
       description: 'Deseja realmente sair da sessão?',
       button: {
         title: 'Sair',
-        onClick: () => handleMessage(),
+        onClick: handleSignOut,
       },
     });
-  }, [comfirmAlert]);
+  }, [comfirmAlert, handleSignOut]);
 
   return (
     <>

@@ -3,25 +3,15 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import GlobaStyle from './styles/global';
 
-import { ModalProvider } from './hooks/Modal';
-import { SideBarProvider } from './hooks/SideBar';
-import { ToastProvider } from './hooks/Toast';
-import { AuthProvider } from './hooks/Auth';
-
 import Routes from './routes';
+import GlobalProvider from './hooks';
 
 const App: React.FC = () => (
   <Router>
-    <AuthProvider>
-      <ModalProvider>
-        <SideBarProvider>
-          <ToastProvider>
-            <GlobaStyle />
-            <Routes />
-          </ToastProvider>
-        </SideBarProvider>
-      </ModalProvider>
-    </AuthProvider>
+    <GlobalProvider>
+      <GlobaStyle />
+      <Routes />
+    </GlobalProvider>
   </Router>
 );
 
