@@ -7,14 +7,26 @@ import Route from './Routes';
 import Sigin from '../pages/SignIn';
 import Dashbaord from '../pages/Dashboard';
 import NewCollaborators from '../pages/NewCollaborators';
-import Collaborators from '../pages/Collaborators';
+import Collaborators from '../pages/Collaborators/List';
+import CollaboratorDetail from '../pages/Collaborators/Detail';
 
 const Routes: React.FC = () => (
   <Switch>
     <Route path="/" exact component={Sigin} />
-    <Route path="/dashboard" component={Dashbaord} isPrivate />
-    <Route path="/collaborators" component={Collaborators} isPrivate />
-    <Route path="/collaborators_new" component={NewCollaborators} isPrivate />
+    <Route path="/dashboard" exact component={Dashbaord} isPrivate />
+    <Route path="/collaborators" exact component={Collaborators} isPrivate />
+    <Route
+      path="/collaborators/new"
+      exact
+      component={NewCollaborators}
+      isPrivate
+    />
+    <Route
+      path="/collaborators/:id"
+      exact
+      component={CollaboratorDetail}
+      isPrivate
+    />
   </Switch>
 );
 

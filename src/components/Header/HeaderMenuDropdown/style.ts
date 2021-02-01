@@ -32,7 +32,12 @@ export const Container = styled.div`
 
     &:hover {
       cursor: pointer;
-      background-color: #2a2a2a;
+      background: rgb(137, 49, 48);
+      background: linear-gradient(
+        90deg,
+        rgba(137, 49, 48, 1) 0%,
+        rgba(219, 58, 58, 1) 100%
+      );
       color: #ffffff;
 
       i {

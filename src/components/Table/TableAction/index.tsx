@@ -10,7 +10,11 @@ import { useModal } from '../../../hooks/Modal';
 
 import { Container, Action } from './style';
 
-const TableAction: React.FC = () => {
+interface ITableActionProps {
+  urlPageDetail?: string;
+}
+
+const TableAction: React.FC<ITableActionProps> = ({ urlPageDetail }) => {
   const [visible, setVisible] = useState(false);
   const { comfirmAlert } = useModal();
 
@@ -33,12 +37,14 @@ const TableAction: React.FC = () => {
         </button>
 
         <Action visible={visible}>
-          <div>
-            <button type="button">
-              <MdVisibility size={18} color="#4D85EE" />
-              Visualizar
-            </button>
-          </div>
+          {urlPageDetail && (
+            <Link to={urlPageDetail}>
+              <div>
+                <MdVisibility size={18} color="#4D85EE" />
+                Visualizar
+              </div>
+            </Link>
+          )}
           <div>
             <Link to="/">
               <MdCreate size={18} color="yellow" />
