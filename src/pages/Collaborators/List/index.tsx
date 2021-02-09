@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import Table from '../../components/Table';
+import Table from '../../../components/Table';
 
-import api from '../../services/api';
+import api from '../../../services/api';
 
-import TableAction from '../../components/Table/TableAction';
-import { useAuth } from '../../hooks/Auth';
+import TableAction from '../../../components/Table/TableAction';
+import { useAuth } from '../../../hooks/Auth';
 
 interface IResponseData {
   idColaborador: number;
@@ -39,7 +39,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-      <Table header="Colaboradores" url="collaborators_new">
+      <Table header="Colaboradores" url="collaborators/new">
         <table>
           <thead>
             <tr>
@@ -62,7 +62,11 @@ const Dashboard: React.FC = () => {
               <td>{item.sobrenome}</td>
               <td>{item.telefone}</td>
               <td>{item.idTipo}</td>
-              <TableAction />
+              <TableAction
+                urlPageDetail={`/collaborators/${item.idColaborador}`}
+                urlPageEdit={`/collaborators/edit/${item.idColaborador}`}
+                urlDelete={`collaborators/${item.idColaborador}`}
+              />
             </tr>
           ))}
         </table>

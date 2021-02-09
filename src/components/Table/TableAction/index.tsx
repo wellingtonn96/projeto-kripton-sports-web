@@ -1,29 +1,73 @@
 import React, { useCallback, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+
 import {
   MdCreate,
   MdDeleteForever,
   MdMoreHoriz,
   MdVisibility,
 } from 'react-icons/md';
+import { useAuth } from '../../../hooks/Auth';
 import { useModal } from '../../../hooks/Modal';
+import { useToast } from '../../../hooks/Toast';
 
 import { Container, Action } from './style';
+import api from '../../../services/api';
 
-const TableAction: React.FC = () => {
+interface ITableActionProps {
+  urlPageDetail?: string;
+  urlPageEdit?: string;
+  urlDelete?: string;
+}
+
+const TableAction: React.FC<ITableActionProps> = ({
+  urlPageDetail,
+  urlPageEdit,
+  urlDelete,
+}) => {
   const [visible, setVisible] = useState(false);
-  const { comfirmAlert } = useModal();
+  const { comfirmAlert, removeAlert } = useModal();
+  const { token } = useAuth();
+  const { addToast } = useToast();
+
+  const handleDelete = useCallback(async () => {
+    console.log('clickou aqui');
+
+    if (urlDelete) {
+      try {
+        await api.delete(urlDelete, {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        });
+
+        removeAlert();
+
+        addToast({
+          type: 'success',
+          description: `Colaborador excluido com sucesso!`,
+          title: 'Erro ao deletarr',
+        });
+      } catch (err) {
+        addToast({
+          type: 'error',
+          description: `Ocorreu um erro ao deletar!`,
+          title: 'Erro ao deletarr',
+        });
+      }
+    }
+  }, [token, urlDelete, addToast, removeAlert]);
 
   const comrimDelete = useCallback(() => {
     comfirmAlert({
       title: 'Deletar produto!',
       description: 'Deseja realmente deletar produto',
       button: {
-        onClick: () => alert('comfirmar deletar'),
+        onClick: () => handleDelete(),
         title: 'deletar',
       },
     });
-  }, [comfirmAlert]);
+  }, [comfirmAlert, handleDelete]);
 
   return (
     <>
@@ -33,18 +77,22 @@ const TableAction: React.FC = () => {
         </button>
 
         <Action visible={visible}>
-          <div>
-            <button type="button">
-              <MdVisibility size={18} color="#4D85EE" />
-              Visualizar
-            </button>
-          </div>
-          <div>
-            <Link to="/">
-              <MdCreate size={18} color="yellow" />
-              Editar
+          {urlPageDetail && (
+            <Link to={urlPageDetail}>
+              <div>
+                <MdVisibility size={18} color="#4D85EE" />
+                Visualizar
+              </div>
             </Link>
-          </div>
+          )}
+          {urlPageEdit && (
+            <Link to={urlPageEdit}>
+              <div>
+                <MdCreate size={18} color="yellow" />
+                Editar
+              </div>
+            </Link>
+          )}
           <div>
             <button type="button" onClick={comrimDelete}>
               <MdDeleteForever size={18} color="#DE3B3B" />
