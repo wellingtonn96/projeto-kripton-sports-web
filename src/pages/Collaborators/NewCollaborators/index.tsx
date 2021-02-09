@@ -7,18 +7,18 @@ import * as Yup from 'yup';
 import { useHistory } from 'react-router-dom';
 import { Container } from './style';
 
-import Input from '../../components/Input';
-import InputSelect from '../../components/InputSelect';
-import FormHeader from '../../components/FormHeader';
-import ButtonCancel from '../../components/ButtonCancel';
-import ButtonSave from '../../components/ButtonSave';
-import ButtonGroup from '../../components/ButtonGroup';
+import Input from '../../../components/Input';
+import InputSelect from '../../../components/InputSelect';
+import FormHeader from '../../../components/FormHeader';
+import ButtonCancel from '../../../components/ButtonCancel';
+import ButtonSave from '../../../components/ButtonSave';
+import ButtonGroup from '../../../components/ButtonGroup';
 
-import { Errors, getValidationErrors } from '../../utils/getValidationErros';
-import AvatarUpload from '../../components/AvatarUpload';
-import { useToast } from '../../hooks/Toast';
-import { useAuth } from '../../hooks/Auth';
-import api from '../../services/api';
+import { Errors, getValidationErrors } from '../../../utils/getValidationErros';
+import AvatarUpload from '../../../components/AvatarUpload';
+import { useToast } from '../../../hooks/Toast';
+import { useAuth } from '../../../hooks/Auth';
+import api from '../../../services/api';
 
 const Collaborators: React.FC = () => {
   const history = useHistory();

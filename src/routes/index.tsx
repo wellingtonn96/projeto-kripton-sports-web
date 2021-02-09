@@ -6,9 +6,10 @@ import Route from './Routes';
 
 import Sigin from '../pages/SignIn';
 import Dashbaord from '../pages/Dashboard';
-import NewCollaborators from '../pages/NewCollaborators';
+import NewCollaborators from '../pages/Collaborators/NewCollaborators';
 import Collaborators from '../pages/Collaborators/List';
 import CollaboratorDetail from '../pages/Collaborators/Detail';
+import EditCollaborator from '../pages/Collaborators/EditCollaborator';
 
 const Routes: React.FC = () => (
   <Switch>
@@ -25,6 +26,12 @@ const Routes: React.FC = () => (
       path="/collaborators/:id"
       exact
       component={CollaboratorDetail}
+      isPrivate
+    />
+    <Route
+      path="/collaborators/edit/:id"
+      exact
+      component={EditCollaborator}
       isPrivate
     />
   </Switch>

@@ -29,7 +29,7 @@ const Detail: React.FC = () => {
         setCollaborator(results.data);
       })
       .catch((error) => console.log(error));
-  }, [id]);
+  }, [id, token]);
 
   return (
     <Container>
