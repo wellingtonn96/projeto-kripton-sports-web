@@ -74,6 +74,8 @@ const Collaborators: React.FC = () => {
           idTipo: parseFloat(typeUser),
         };
 
+        console.log(data);
+
         await schema.validate(
           {
             name,
@@ -130,6 +132,7 @@ const Collaborators: React.FC = () => {
       confirmPass,
       file,
       token,
+      history,
       addToast,
     ]
   );
@@ -140,7 +143,7 @@ const Collaborators: React.FC = () => {
       <form onSubmit={handleSubmit}>
         <FormHeader title="Informações Pessoais" icon={FiUser} />
 
-        <AvatarUpload name="avatar_id" file={file} onChange={uploadImage} />
+        {/* <AvatarUpload name="avatar_id" file={file} onChange={uploadImage} /> */}
 
         <Input
           name="name"
