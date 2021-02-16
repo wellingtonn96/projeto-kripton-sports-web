@@ -11,6 +11,7 @@ import Collaborators from '../pages/Collaborators/List';
 import CollaboratorDetail from '../pages/Collaborators/Detail';
 import EditCollaborator from '../pages/Collaborators/EditCollaborator';
 import NewProduct from '../pages/Products/NewProduct';
+import ListProducts from '../pages/Products/ListProducts';
 
 const Routes: React.FC = () => (
   <Switch>
@@ -35,7 +36,8 @@ const Routes: React.FC = () => (
       component={EditCollaborator}
       isPrivate
     />
-    <Route path="/produtos" exact component={NewProduct} isPrivate />
+    <Route path="/produtos/new" exact component={NewProduct} isPrivate />
+    <Route path="/produtos" exact component={ListProducts} isPrivate />
   </Switch>
 );
 

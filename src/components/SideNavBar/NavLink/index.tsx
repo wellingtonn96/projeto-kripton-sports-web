@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { Container, SubMenuLinks } from './style';
 
-import { ISideNavBarData } from '../Data';
+import { ISideNavBarData } from '../../../constants/sideNavBarData';
 
 interface IPropsNavLink {
   item: ISideNavBarData;
