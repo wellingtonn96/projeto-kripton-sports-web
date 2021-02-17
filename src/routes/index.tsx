@@ -12,6 +12,8 @@ import CollaboratorDetail from '../pages/Collaborators/Detail';
 import EditCollaborator from '../pages/Collaborators/EditCollaborator';
 import NewProduct from '../pages/Products/NewProduct';
 import ListProducts from '../pages/Products/ListProducts';
+import DetailProduct from '../pages/Products/Detail';
+import EditProduct from '../pages/Products/EditProduct';
 
 const Routes: React.FC = () => (
   <Switch>
@@ -38,6 +40,8 @@ const Routes: React.FC = () => (
     />
     <Route path="/produtos/new" exact component={NewProduct} isPrivate />
     <Route path="/produtos" exact component={ListProducts} isPrivate />
+    <Route path="/produto/:id" exact component={DetailProduct} isPrivate />
+    <Route path="/produto/edit/:id" exact component={EditProduct} isPrivate />
   </Switch>
 );
 

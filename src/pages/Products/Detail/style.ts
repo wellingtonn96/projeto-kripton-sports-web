@@ -24,4 +24,25 @@ export const DetailHeader = styled.div`
 
 export const DetailBody = styled.div`
   padding: 30px;
+
+  div {
+    width: 100%;
+    margin: 10px 0;
+
+    div {
+      display: flex;
+      justify-content: center;
+      margin: 50px 0;
+
+      img {
+        width: 500px;
+        margin: 0 auto;
+
+        @media (max-width: 760px) {
+          max-width: 100%;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
 `;

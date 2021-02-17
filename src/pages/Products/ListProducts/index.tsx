@@ -25,15 +25,11 @@ interface IResponseData {
 
 const Dashboard: React.FC = () => {
   const [products, setProducts] = useState<IResponseData[]>([]);
-  const { token } = useAuth();
+  const { authentication } = useAuth();
 
   useEffect(() => {
     async function loadProducts() {
-      const response = await api.get('products', {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await api.get('products', authentication);
 
       const data = response.data.map((item: any) => {
         return {
@@ -57,7 +53,7 @@ const Dashboard: React.FC = () => {
     }
 
     loadProducts();
-  }, [token]);
+  }, [authentication]);
 
   return (
     <>

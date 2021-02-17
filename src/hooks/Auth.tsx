@@ -12,6 +12,11 @@ interface AuthContextData {
   signOut(): void;
   user: UserType;
   token: string;
+  authentication: {
+    headers: {
+      authorization: string;
+    };
+  };
 }
 
 interface AuthState {
@@ -44,6 +49,12 @@ const AuthProvider: React.FC = ({ children }) => {
     return {} as AuthState;
   });
 
+  const authentication = {
+    headers: {
+      authorization: `Bearer ${data.token}`,
+    },
+  };
+
   const signIn = useCallback(async ({ login, password }) => {
     const response = await api.post('sessions', {
       login,
@@ -70,7 +81,13 @@ const AuthProvider: React.FC = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user: data.user, token: data.token, signIn, signOut }}
+      value={{
+        user: data.user,
+        token: data.token,
+        signIn,
+        signOut,
+        authentication,
+      }}
     >
       {children}
     </AuthContext.Provider>

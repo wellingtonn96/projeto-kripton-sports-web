@@ -4,32 +4,56 @@ import api from '../../../services/api';
 import { useAuth } from '../../../hooks/Auth';
 import { Container, DetailHeader, DetailBody } from './style';
 
-interface IResponse {
-  idColaborador: number;
-  login: string;
-  email: string;
-  nome: string;
-  sobrenome: string;
-  telefone: string;
+interface IResponseData {
+  id: number;
+  idCategory: number;
+  code: number;
+  brand: string;
+  name: string;
+  productImg: string;
+  description: string;
+  expirationDate: string;
+  lot: number;
+  statusProduct: string;
+  value: number;
+  stock: number;
+  idSupplier: number;
 }
 
 const Detail: React.FC = () => {
-  const [collaborator, setCollaborator] = useState<IResponse>();
+  const [products, setProducts] = useState({} as IResponseData);
   const { id } = useParams<{ id: string }>();
   const { token } = useAuth();
 
   useEffect(() => {
-    api
-      .get(`collaborators/${id}`, {
+    async function loadProduct() {
+      const { data } = await api.get(`products/${id}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
-      })
-      .then((results) => {
-        setCollaborator(results.data);
-      })
-      .catch((error) => console.log(error));
-  }, [id, token]);
+      });
+
+      const product: IResponseData = {
+        id: data.idProduto,
+        idCategory: data.idCategoria,
+        code: data.codigo,
+        brand: data.marca,
+        name: data.nome,
+        productImg: data.produto_img,
+        description: data.descricao,
+        expirationDate: new Date(data.validade).toLocaleDateString('pt-br'),
+        lot: data.lote,
+        statusProduct: data.statusProduto,
+        value: data.valor,
+        stock: data.qtdeEstoque,
+        idSupplier: data.idFornecedor,
+      };
+
+      setProducts(product);
+    }
+
+    loadProduct();
+  }, [token, id]);
 
   return (
     <Container>
@@ -38,25 +62,51 @@ const Detail: React.FC = () => {
       </DetailHeader>
 
       <DetailBody>
-        {collaborator && (
+        {products && (
           <>
             <div>
-              <span>{`ID: ${collaborator.idColaborador}`}</span>
+              <div>
+                <img
+                  src={`http://localhost:3333/files/${products.productImg}`}
+                  alt="imagem do produto"
+                />
+              </div>
             </div>
             <div>
-              <span>{`Login: ${collaborator.login}`}</span>
+              <span>{`ID: ${products.id}`}</span>
             </div>
             <div>
-              <span>{`Email: ${collaborator.email}`}</span>
+              <span>{`ID Categoria: ${products.idCategory}`}</span>
             </div>
             <div>
-              <span>{`Nome: ${collaborator.nome}`}</span>
+              <span>{`Código: ${products.code}`}</span>
             </div>
             <div>
-              <span>{`Sobrenome: ${collaborator.sobrenome}`}</span>
+              <span>{`Marca: ${products.brand}`}</span>
             </div>
             <div>
-              <span>{`Telefone: ${collaborator.telefone}`}</span>
+              <span>{`Nome: ${products.name}`}</span>
+            </div>
+            <div>
+              <span>{`Descrição: ${products.description}`}</span>
+            </div>
+            <div>
+              <span>{`expirationDate: ${products.expirationDate}`}</span>
+            </div>
+            <div>
+              <span>{`Lote: ${products.lot}`}</span>
+            </div>
+            <div>
+              <span>{`Status do Produto: ${products.statusProduct}`}</span>
+            </div>
+            <div>
+              <span>{`Valor: ${products.value}`}</span>
+            </div>
+            <div>
+              <span>{`Estoque: ${products.stock}`}</span>
+            </div>
+            <div>
+              <span>{`ID Fornecedor: ${products.idSupplier}`}</span>
             </div>
           </>
         )}

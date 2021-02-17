@@ -1,10 +1,10 @@
-import React, { ChangeEvent, useCallback, useState } from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 
 import { FiUser } from 'react-icons/fi';
 
 import * as Yup from 'yup';
 
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Container } from './style';
 
 import Input from '../../../components/Input';
@@ -25,6 +25,7 @@ const NewProduct: React.FC = () => {
   const { addToast } = useToast();
   const history = useHistory();
   const { authentication } = useAuth();
+  const { id } = useParams<{ id: string }>();
 
   const [idCategory, setIdCategory] = useState('');
   const [code, setCode] = useState('');
@@ -39,6 +40,28 @@ const NewProduct: React.FC = () => {
   const [idSupplier, setIdSupplier] = useState('');
   const [file, setFile] = useState<FileList>();
   const [errors, setErrors] = useState<Errors>({});
+  const [productImg, setProductImg] = useState('');
+
+  useEffect(() => {
+    async function loadProduct() {
+      const { data } = await api.get(`products/${id}`, authentication);
+
+      setIdCategory(data.idCategoria);
+      setCode(data.codigo);
+      setBrand(data.marca);
+      setName(data.nome);
+      setDescription(data.descricao);
+      setExpirationDate(data.validade);
+      setLot(data.lote);
+      setStatusProduct(data.statusProduto);
+      setValue(data.valor);
+      setStock(data.qtdeEstoque);
+      setIdSupplier(data.idFornecedor);
+      setProductImg(data.produto_img);
+    }
+
+    loadProduct();
+  }, [authentication, id]);
 
   const uploadImage = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) setFile(e.target.files);
@@ -95,7 +118,7 @@ const NewProduct: React.FC = () => {
         idFornecedor: parseFloat(idSupplier),
       };
 
-      const response = await api.post('products', data, authentication);
+      const response = await api.put(`products/${id}`, data, authentication);
 
       if (file) {
         const dataFile = new FormData();
@@ -133,11 +156,16 @@ const NewProduct: React.FC = () => {
 
   return (
     <Container>
-      <h1>Cadastrar Produtos</h1>
+      <h1>EditarProduto</h1>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <FormHeader title="Informações Pessoais" icon={FiUser} />
 
-        <InputImageUpload name="avatar_id" file={file} onChange={uploadImage} />
+        <InputImageUpload
+          name="avatar_id"
+          file={file}
+          onChange={uploadImage}
+          previewServer={productImg}
+        />
 
         <InputSelect
           label="Categoria"
