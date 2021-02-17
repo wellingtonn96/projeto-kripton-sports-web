@@ -7,7 +7,7 @@ import logoImg from '../../assets/logo.png';
 
 import NavLink from './NavLink';
 
-import { SideNavBarData } from './Data';
+import { SideNavBarData } from '../../constants/sideNavBarData';
 
 const AsideMenu: React.FC = () => {
   const { showSideBar } = useSideBar();
