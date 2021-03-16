@@ -10,7 +10,7 @@ export const Container = styled.div`
     width: 100px;
     margin-left: 10px;
     font-size: 14px;
-    color: gray;
+    color: ${({ theme }) => theme.colors.text};
     margin-top: 10px;
     text-transform: uppercase;
     margin-right: 25px;
@@ -29,7 +29,7 @@ export const InputField = styled.div<IPropsInputField>`
     width: 100%;
     height: 150px;
     font-size: 16px;
-    color: #494949;
+    color: ${({ theme }) => theme.colors.text};
     border-radius: 5px;
     border: 1px solid gray;
     padding: 10px;

@@ -13,7 +13,7 @@ export const AsideMenu = styled.aside`
   font-weight: 500;
 
   div {
-    background-color: #ffffff;
+    background-color: ${({ theme }) => theme.colors.primary};
     height: 60px;
     display: flex;
     align-items: center;
@@ -73,7 +73,7 @@ export const Header = styled.header`
   height: 60px;
   display: flex;
   position: fixed;
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.colors.primary};
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.065);
   padding: 20px;
 
@@ -173,7 +173,7 @@ export const Footer = styled.div`
   font-size: 15px;
   text-align: center;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.colors.primary};
 
   @media (max-width: 760px) {
     width: 100%;

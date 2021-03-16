@@ -30,7 +30,7 @@ export const ModalWrapper = styled.div`
   margin: 0 auto;
   border-radius: 10px;
   width: 600px;
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.primary};
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.4);
   animation: ${appearFromMiddle} 0.3s;
 

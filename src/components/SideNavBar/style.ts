@@ -15,7 +15,7 @@ export const Container = styled.aside<IPropsContainer>`
 
   div {
     position: relative;
-    background-color: #ffffff;
+    background-color: ${({ theme }) => theme.colors.primary};
     height: 60px;
     display: flex;
     align-items: center;

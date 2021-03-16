@@ -12,7 +12,7 @@ export const Container = styled.div`
     cursor: pointer;
     transition: opacity 0.2s;
     border: 0;
-    color: #494949;
+    color: ${({ theme }) => theme.colors.text};
     border-radius: 50%;
 
     padding: 5px;

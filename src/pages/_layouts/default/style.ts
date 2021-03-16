@@ -30,7 +30,7 @@ export const Footer = styled.div`
   font-size: 15px;
   text-align: center;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.colors.primary};
 
   @media (max-width: 760px) {
     width: 100%;

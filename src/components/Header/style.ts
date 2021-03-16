@@ -5,15 +5,14 @@ export const Container = styled.header`
   height: 60px;
   display: flex;
   position: fixed;
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.colors.primary};
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.065);
   padding: 20px;
   z-index: 10;
 
   i {
-    color: #888888;
+    color: ${({ theme }) => theme.colors.text};
     font-size: 20px;
-    margin: 20px;
   }
 
   img {
@@ -23,12 +22,17 @@ export const Container = styled.header`
     box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.065);
   }
 
-  ul {
+  > ul {
     display: flex;
     align-items: center;
 
-    li {
+    > li {
       list-style: none;
+      margin-left: 15px;
+
+      &:first-child {
+        margin-left: 0;
+      }
     }
   }
 
@@ -43,7 +47,6 @@ export const InputSearch = styled.div`
   border-radius: 50px;
   border: 1px solid #888888;
   background-color: none;
-  margin: 10px;
   padding: 10px;
   display: flex;
   height: 30px;
@@ -60,7 +63,7 @@ export const InputSearch = styled.div`
   }
 
   button {
-    color: #888888;
+    color: ${({ theme }) => theme.colors.text};
     display: flex;
     border: 0;
     background: transparent;
@@ -70,16 +73,58 @@ export const InputSearch = styled.div`
 `;
 
 export const HeaderDropDown = styled.li`
-  padding: 10px 20px;
+  position: absolute;
+  right: 0;
+  margin-top: 10px;
+  margin-right: 5px;
+  padding: 0;
+  background-color: ${({ theme }) => theme.colors.primary};
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 20px, rgba(0, 0, 0, 0.1) 0px 12px 13px,
+    rgba(0, 0, 0, 0.09) 0px -3px 5px;
 
-  img {
-    margin-right: 10px;
-    width: 50px;
-    height: 50px;
+  > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+
+    img {
+      margin-right: 10px;
+    }
   }
 
-  span {
-    font-size: 18px;
-    font-weight: 800;
+  ul {
+    width: 100%;
+    display: inline;
+
+    li {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+
+      span {
+        font-weight: bold;
+      }
+
+      svg {
+        margin-right: 20px;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background: rgb(137, 49, 48);
+        background: linear-gradient(
+          90deg,
+          rgba(137, 49, 48, 1) 0%,
+          rgba(219, 58, 58, 1) 100%
+        );
+        color: #ffffff;
+
+        i {
+          color: #ffffff;
+        }
+      }
+    }
   }
 `;

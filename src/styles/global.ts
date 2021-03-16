@@ -9,8 +9,8 @@ export default createGlobalStyle`
   }
 
   body {
-    background: #eeeeee;
-    color: #2a2a2a;
+    background: ${({ theme }) => theme.colors.background};
+    color: ${({ theme }) => theme.colors.text};
   }
 
   body, input, button {

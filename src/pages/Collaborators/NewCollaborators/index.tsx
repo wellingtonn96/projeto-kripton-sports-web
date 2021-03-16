@@ -24,7 +24,7 @@ const Collaborators: React.FC = () => {
   const history = useHistory();
 
   const { addToast } = useToast();
-  const { token } = useAuth();
+  const { authentication } = useAuth();
 
   const [name, setName] = useState('');
   const [lastname, setLastname] = useState('');
@@ -41,109 +41,100 @@ const Collaborators: React.FC = () => {
     if (e.target.files) setFile(e.target.files);
   }, []);
 
-  const handleSubmit = useCallback(
-    async (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      try {
-        const schema = Yup.object().shape({
-          name: Yup.string().required('Campo obrigatório'),
-          lastname: Yup.string().required('Campo obrigatório'),
-          email: Yup.string()
-            .required('Campo obrigatório')
-            .email('Campo do tipo email'),
-          phone: Yup.string().required('Campo obrigatório'),
-          login: Yup.string().required('Campo obrigatório'),
-          password: Yup.string().required('Campo obrigatório'),
-          confirmPass: Yup.string().required('Campo obrigatório'),
-          typeUser: Yup.string().required('Campo obrigatório'),
-        });
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const schema = Yup.object().shape({
+        name: Yup.string().required('Campo obrigatório'),
+        lastname: Yup.string().required('Campo obrigatório'),
+        email: Yup.string()
+          .required('Campo obrigatório')
+          .email('Campo do tipo email'),
+        phone: Yup.string().required('Campo obrigatório'),
+        login: Yup.string().required('Campo obrigatório'),
+        password: Yup.string().required('Campo obrigatório'),
+        confirmPass: Yup.string().required('Campo obrigatório'),
+        typeUser: Yup.string().required('Campo obrigatório'),
+      });
 
-        const formData = new FormData();
+      const formData = new FormData();
 
-        if (file) {
-          formData.append('file', file[0] as Blob);
-        }
-
-        const data = {
-          login,
-          senhaEncrypt: password,
-          email,
-          nome: name,
-          sobrenome: lastname,
-          telefone: phone,
-          idTipo: parseFloat(typeUser),
-        };
-
-        console.log(data);
-
-        await schema.validate(
-          {
-            name,
-            lastname,
-            email,
-            phone,
-            login,
-            password,
-            typeUser,
-            confirmPass,
-          },
-          {
-            abortEarly: false,
-          }
-        );
-
-        await api.post('collaborators', data, {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        });
-
-        addToast({
-          type: 'success',
-          title: 'Sucesso!',
-          description: 'Colaborador cadastrado com sucesso!',
-        });
-
-        setErrors({});
-
-        history.push('/collaborators');
-      } catch (err) {
-        if (err instanceof Yup.ValidationError) {
-          const getErrors = getValidationErrors(err);
-
-          setErrors(getErrors);
-        } else {
-          addToast({
-            type: 'error',
-            title: 'Erro!',
-            description: 'Ocorreu algum erro ao cadastrar colaborador!',
-          });
-        }
+      if (file) {
+        formData.append('file', file[0] as Blob);
       }
-    },
-    [
-      name,
-      lastname,
-      email,
-      phone,
-      login,
-      password,
-      typeUser,
-      confirmPass,
-      file,
-      token,
-      history,
-      addToast,
-    ]
-  );
 
+      const data = {
+        login,
+        senhaEncrypt: password,
+        email,
+        nome: name,
+        sobrenome: lastname,
+        telefone: phone,
+        idTipo: parseFloat(typeUser),
+      };
+
+      await schema.validate(
+        {
+          name,
+          lastname,
+          email,
+          phone,
+          login,
+          password,
+          typeUser,
+          confirmPass,
+        },
+        {
+          abortEarly: false,
+        }
+      );
+
+      const response = await api.post(`collaborators`, data, authentication);
+
+      if (file) {
+        const dataUser = response.data;
+
+        const dataFile = new FormData();
+
+        dataFile.append('avatar', file[0]);
+
+        await api.patch(
+          `collaborators/avatar/${dataUser.idColaborador}`,
+          dataFile,
+          authentication
+        );
+      }
+
+      addToast({
+        type: 'success',
+        title: 'Sucesso!',
+        description: 'Colaborador cadastrado com sucesso!',
+      });
+
+      setErrors({});
+
+      history.push('/collaborators');
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        const getErrors = getValidationErrors(err);
+
+        setErrors(getErrors);
+      } else {
+        addToast({
+          type: 'error',
+          title: 'Erro!',
+          description: 'Ocorreu algum erro ao cadastrar colaborador!',
+        });
+      }
+    }
+  };
   return (
     <Container>
       <h1>Cadastrar colaborador</h1>
       <form onSubmit={handleSubmit}>
         <FormHeader title="Informações Pessoais" icon={FiUser} />
 
-        {/* <InputImageUpload name="avatar_id" file={file} onChange={uploadImage} /> */}
+        <InputImageUpload name="avatar_id" file={file} onChange={uploadImage} />
 
         <Input
           name="name"

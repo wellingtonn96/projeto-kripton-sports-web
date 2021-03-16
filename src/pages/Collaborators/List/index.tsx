@@ -64,7 +64,6 @@ const Dashboard: React.FC = () => {
               <td>{item.idTipo}</td>
               <TableAction
                 urlPageDetail={`/collaborators/${item.idColaborador}`}
-                urlPageEdit={`/collaborators/edit/${item.idColaborador}`}
                 urlDelete={`collaborators/${item.idColaborador}`}
               />
             </tr>
