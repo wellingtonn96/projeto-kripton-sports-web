@@ -21,7 +21,7 @@ const Header: React.FC = () => {
   const { toogleTheme } = useApp();
   const { signOut, user } = useAuth();
   const [showDropDown, setShowDropDown] = useState(false);
-  const { showOrHideSideBar } = useSideBar();
+  const { showOrHideSideBar, showSideBar } = useSideBar();
   const { comfirmAlert, removeAlert } = useModal();
 
   const imageAvatar = user.avatar
@@ -50,7 +50,7 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <Container>
+      <Container showSideBar={showSideBar}>
         <ul>
           <li>
             <i>
@@ -67,7 +67,7 @@ const Header: React.FC = () => {
           </li>
         </ul>
 
-        <ul style={{ position: 'fixed', right: '10px', top: '10px' }}>
+        <ul>
           <li>
             <i>
               <FaBell />

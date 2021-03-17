@@ -44,6 +44,7 @@ export const ToastMessage = styled.div<ToastProps>`
   margin-bottom: 20px;
   box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
   ${(props) => toastTypeValidations[props.type || 'info']}
+  transition: 0.3s;
 
   & + div {
     margin-top: 10px;

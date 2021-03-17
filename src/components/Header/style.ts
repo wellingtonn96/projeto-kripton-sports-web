@@ -1,14 +1,22 @@
 import styled from 'styled-components';
 
-export const Container = styled.header`
-  width: 100%;
+interface IPropsHeader {
+  showSideBar: boolean;
+}
+
+export const Container = styled.header<IPropsHeader>`
   height: 60px;
+  width: ${(props) => (props.showSideBar ? `82%` : '100%')};
   display: flex;
   position: fixed;
+  top: 0;
+  right: 0;
   background-color: ${({ theme }) => theme.colors.primary};
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.065);
   padding: 20px;
   z-index: 10;
+  align-items: center;
+  transition: 0.3s;
 
   i {
     color: ${({ theme }) => theme.colors.text};
@@ -20,6 +28,10 @@ export const Container = styled.header`
     height: 40px;
     border-radius: 50%;
     box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.065);
+  }
+
+  ul:first-child {
+    flex: 1;
   }
 
   > ul {

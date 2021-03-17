@@ -72,46 +72,48 @@ const Dashboard: React.FC = () => {
               <th>Ações</th>
             </tr>
           </thead>
-          <tr>
-            <td>Iphone 5</td>
-            <td>image</td>
-            <td>#9405822</td>
-            <td>Paid</td>
-            <td>dsfsd</td>
-            <td>$ 1250.00</td>
-            <td>03 Aug 2017</td>
-            <TableAction />
-          </tr>
-          <tr>
-            <td>Iphone 5</td>
-            <td>image</td>
-            <td>#9405822</td>
-            <td>Paid</td>
-            <td>dsfsd</td>
-            <td>$ 1250.00</td>
-            <td>03 Aug 2017</td>
-            <TableAction />
-          </tr>
-          <tr>
-            <td>Iphone 5</td>
-            <td>image</td>
-            <td>#9405822</td>
-            <td>Paid</td>
-            <td>dsfsd</td>
-            <td>$ 1250.00</td>
-            <td>03 Aug 2017</td>
-            <TableAction />
-          </tr>
-          <tr>
-            <td>Iphone 5</td>
-            <td>image</td>
-            <td>#9405822</td>
-            <td>Paid</td>
-            <td>dsfsd</td>
-            <td>$ 1250.00</td>
-            <td>03 Aug 2017</td>
-            <TableAction />
-          </tr>
+          <tbody>
+            <tr>
+              <td>Iphone 5</td>
+              <td>image</td>
+              <td>#9405822</td>
+              <td>Paid</td>
+              <td>dsfsd</td>
+              <td>$ 1250.00</td>
+              <td>03 Aug 2017</td>
+              <TableAction />
+            </tr>
+            <tr>
+              <td>Iphone 5</td>
+              <td>image</td>
+              <td>#9405822</td>
+              <td>Paid</td>
+              <td>dsfsd</td>
+              <td>$ 1250.00</td>
+              <td>03 Aug 2017</td>
+              <TableAction />
+            </tr>
+            <tr>
+              <td>Iphone 5</td>
+              <td>image</td>
+              <td>#9405822</td>
+              <td>Paid</td>
+              <td>dsfsd</td>
+              <td>$ 1250.00</td>
+              <td>03 Aug 2017</td>
+              <TableAction />
+            </tr>
+            <tr>
+              <td>Iphone 5</td>
+              <td>image</td>
+              <td>#9405822</td>
+              <td>Paid</td>
+              <td>dsfsd</td>
+              <td>$ 1250.00</td>
+              <td>03 Aug 2017</td>
+              <TableAction />
+            </tr>
+          </tbody>
         </table>
       </Table>
     </>

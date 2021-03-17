@@ -4,7 +4,7 @@ export const dark = {
     primary: '#2a2a2a',
     secondary: '#c53030',
     background: '#414141',
-    text: '#ffff',
+    text: '#eeee',
   },
   logoImg: '../../assets/logo-dark.svg',
 };

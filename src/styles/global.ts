@@ -5,7 +5,8 @@ export default createGlobalStyle`
     outline: 0;
     padding: 0;
     margin: 0;
-    box-sizing: border-box
+    box-sizing: border-box;
+    transition: 0.3s;
   }
 
   body {

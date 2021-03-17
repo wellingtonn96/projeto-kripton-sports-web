@@ -31,19 +31,6 @@ export const Container = styled.li`
     border-bottom: 1px solid #f5f5f5;
     padding: 20px;
 
-    &:hover {
-      cursor: pointer;
-      background: rgb(137, 49, 48);
-      background: linear-gradient(
-        90deg,
-        rgba(137, 49, 48, 1) 0%,
-        rgba(219, 58, 58, 1) 100%
-      );
-      color: #ffffff;
 
-      i {
-        color: #ffffff;
-      }
-    }
   } */
 `;

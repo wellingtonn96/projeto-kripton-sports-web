@@ -10,9 +10,9 @@ interface IPropsMain {
 }
 
 export const Main = styled.main<IPropsMain>`
-  width: 100%;
-  margin-left: ${({ showSideBar }) => (showSideBar ? '250px' : '0')};
-  transition: -350ms;
+  width: ${({ showSideBar }) => (showSideBar ? '82%' : '100%')};
+  margin-left: ${({ showSideBar }) => (showSideBar ? '18%' : '0')};
+  transition: 0.3s;
 
   @media (max-width: 760px) {
     width: 100%;
