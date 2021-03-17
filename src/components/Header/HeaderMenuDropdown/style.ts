@@ -10,39 +10,27 @@ const animation = keyframes`
   }
 `;
 
-export const Container = styled.div`
-  position: absolute;
+export const Container = styled.li`
+  /* position: absolute;
   right: 0;
   margin-top: 10px;
   margin-right: 5px;
   padding: 0;
   display: block;
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 5px;
-  box-shadow: 0 8px 16px 0 rgba(40, 40, 90, 0.09),
-    0 3px 6px 0 rgba(0, 0, 0, 0.065) !important;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 20px, rgba(0, 0, 0, 0.1) 0px 12px 13px,
+    rgba(0, 0, 0, 0.09) 0px -3px 5px;
   animation: ${animation} 0.8s;
 
-  li {
+  div {
     width: 100%;
     display: flex;
     align-items: center;
-    color: #2e2e2e;
+    color: ${({ theme }) => theme.colors.text};
     border-bottom: 1px solid #f5f5f5;
+    padding: 20px;
 
-    &:hover {
-      cursor: pointer;
-      background: rgb(137, 49, 48);
-      background: linear-gradient(
-        90deg,
-        rgba(137, 49, 48, 1) 0%,
-        rgba(219, 58, 58, 1) 100%
-      );
-      color: #ffffff;
 
-      i {
-        color: #ffffff;
-      }
-    }
-  }
+  } */
 `;

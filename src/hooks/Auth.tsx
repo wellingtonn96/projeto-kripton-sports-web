@@ -28,6 +28,7 @@ interface UserType {
   idColaborador: number;
   login: string;
   senha: string;
+  avatar: string;
   email: string;
   nome: string;
   sobrenome: string;

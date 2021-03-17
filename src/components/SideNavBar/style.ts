@@ -6,16 +6,17 @@ interface IPropsContainer {
 
 export const Container = styled.aside<IPropsContainer>`
   position: fixed;
-  width: 250px;
+  width: 18%;
   height: 100vh;
   background-color: #2a2a2a;
   font-weight: 500;
-  left: ${({ sideBar }) => (sideBar ? '0' : '-100%')};
+  left: ${({ sideBar }) => (sideBar ? '0' : '-18%')};
   z-index: 10;
+  transition: 0.3s;
 
   div {
     position: relative;
-    background-color: #ffffff;
+    background-color: ${({ theme }) => theme.colors.primary};
     height: 60px;
     display: flex;
     align-items: center;
@@ -29,5 +30,9 @@ export const Container = styled.aside<IPropsContainer>`
     @media (max-width: 760px) {
       margin-top: 60px;
     }
+  }
+
+  @media (max-width: 760px) {
+    width: 250px;
   }
 `;

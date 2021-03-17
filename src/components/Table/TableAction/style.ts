@@ -18,7 +18,7 @@ interface ActionProps {
 }
 
 export const Action = styled.div<ActionProps>`
-  background-color: #ffff;
+  background-color: ${({ theme }) => theme.colors.primary};
   position: absolute;
   min-width: 150px;
   z-index: 10;
@@ -27,7 +27,8 @@ export const Action = styled.div<ActionProps>`
   flex-direction: column;
   text-align: left;
   white-space: nowrap;
-  box-shadow: 0 8px 16px 0 rgba(40, 40, 90, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 20px, rgba(0, 0, 0, 0.1) 0px 12px 13px,
+    rgba(0, 0, 0, 0.09) 0px -3px 5px;
   transition: 1.5s;
 
   div {

@@ -5,12 +5,13 @@ export default createGlobalStyle`
     outline: 0;
     padding: 0;
     margin: 0;
-    box-sizing: border-box
+    box-sizing: border-box;
+    transition: 0.3s;
   }
 
   body {
-    background: #eeeeee;
-    color: #2a2a2a;
+    background: ${({ theme }) => theme.colors.background};
+    color: ${({ theme }) => theme.colors.text};
   }
 
   body, input, button {

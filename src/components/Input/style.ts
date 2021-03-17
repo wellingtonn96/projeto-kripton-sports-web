@@ -30,7 +30,7 @@ export const InputField = styled.div<IPropsInputField>`
     width: 100%;
     height: 40px;
     font-size: 16px;
-    color: #494949;
+    color: ${({ theme }) => theme.colors.text};
     border-radius: 5px;
     border: 1px solid gray;
     padding: 20px;

@@ -4,7 +4,7 @@ export const DataTable = styled.div`
   width: 100%;
   position: relative;
   font-size: 18px;
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 0 0 5px 5px;
   box-shadow: 0 8px 16px 0 rgba(40, 40, 90, 0.09),
     0 3px 6px 0 rgba(0, 0, 0, 0.065);
@@ -23,7 +23,7 @@ export const TableHeader = styled.div`
 `;
 
 export const TableBody = styled.div`
-  padding: 30px;
+  padding: 20px;
 
   > div:first-child {
     padding: 20px;
@@ -60,20 +60,39 @@ export const TableBody = styled.div`
       text-align: left;
       font-size: 16px;
       margin-bottom: 30px;
+      border-collapse: collapse;
 
-      td,
       th {
+        height: 60px;
+        background: ${({ theme }) =>
+          theme.title === 'dark' ? '#333333' : '#ffffff'};
         text-align: center;
-        padding: 10px 0;
-        border-top: 1px solid #dddddd;
+        padding: 0 20px;
+        border: 0;
+        text-transform: uppercase;
       }
 
       th {
-        color: #888888;
+        color: ${({ theme }) =>
+          theme.title === 'dark' ? '#c13030' : '#1a1a1a'};
+      }
+
+      tr:nth-child(odd) {
+        background: ${({ theme }) =>
+          theme.title === 'dark' ? '#222222' : '#f1f1f1'};
+        color: #666666;
+      }
+
+      tr {
+        background: ${({ theme }) =>
+          theme.title === 'dark' ? '#1a1a1a' : '#ffff'};
+        color: #666666;
       }
 
       td {
-        color: #999;
+        height: 60px;
+        padding: 0 20px;
+        text-align: center;
       }
     }
   }
