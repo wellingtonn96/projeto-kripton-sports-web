@@ -14,6 +14,8 @@ import NewProduct from '../pages/Products/NewProduct';
 import ListProducts from '../pages/Products/ListProducts';
 import DetailProduct from '../pages/Products/Detail';
 import EditProduct from '../pages/Products/EditProduct';
+import NewCategories from '../pages/Products/NewCategories';
+import Categories from '../pages/Products/Categories';
 
 const Routes: React.FC = () => (
   <Switch>
@@ -42,6 +44,8 @@ const Routes: React.FC = () => (
     <Route path="/produtos" exact component={ListProducts} isPrivate />
     <Route path="/produto/:id" exact component={DetailProduct} isPrivate />
     <Route path="/produto/edit/:id" exact component={EditProduct} isPrivate />
+    <Route path="/categorias" exact component={Categories} isPrivate />
+    <Route path="/categoria/new" exact component={NewCategories} isPrivate />
   </Switch>
 );
 

@@ -185,6 +185,7 @@ export const CardContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin-top: 20px;
 
   @media (max-width: 760px) {
     width: 100%;
@@ -197,7 +198,13 @@ export const Card = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #2e2e2e;
+  background: #eb3349; /* fallback for old browsers */
+  background: linear-gradient(
+    to right,
+    #f45c43,
+    #eb3349
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   box-shadow: 0 8px 16px 0 rgba(40, 40, 90, 0.09),
     0 3px 6px 0 rgba(0, 0, 0, 0.065);
   color: #ffffff;

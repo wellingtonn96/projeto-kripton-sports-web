@@ -11,7 +11,6 @@ export const Container = styled.div`
     width: 100px;
     margin-left: 10px;
     font-size: 14px;
-    color: ${({ theme }) => theme.colors.text};
     text-transform: uppercase;
     margin-right: 25px;
   }

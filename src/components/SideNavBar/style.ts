@@ -24,7 +24,7 @@ export const Container = styled.aside<IPropsContainer>`
     padding: 20px;
 
     img {
-      height: 60px;
+      height: 45px;
     }
 
     @media (max-width: 760px) {
@@ -34,5 +34,6 @@ export const Container = styled.aside<IPropsContainer>`
 
   @media (max-width: 760px) {
     width: 250px;
+    left: ${({ sideBar }) => (sideBar ? '0' : '-250px')};
   }
 `;

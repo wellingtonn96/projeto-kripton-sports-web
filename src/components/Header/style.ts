@@ -1,5 +1,14 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
+const animation = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+`;
 interface IPropsHeader {
   showSideBar: boolean;
 }
@@ -70,6 +79,7 @@ export const InputSearch = styled.div`
 
   input {
     background: transparent;
+    color: ${({ theme }) => theme.colors.text};
     width: 100%;
     border: 0;
   }
@@ -94,6 +104,7 @@ export const HeaderDropDown = styled.li`
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 20px, rgba(0, 0, 0, 0.1) 0px 12px 13px,
     rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  animation: ${animation} 0.8s;
 
   > div {
     display: flex;

@@ -33,10 +33,11 @@ export const TableBody = styled.div`
     align-items: center;
     height: 50px;
 
-    button {
-      width: 120px;
+    > button {
+      width: 130px;
       background: #2bcb6b;
       border: none;
+      border-radius: 5px;
       color: white;
       padding: 5px 0;
       font-weight: 600;
@@ -46,7 +47,9 @@ export const TableBody = styled.div`
       flex: 1;
 
       input {
-        width: 200px;
+        width: 250px;
+        height: 30px;
+        border-radius: 20px;
       }
     }
   }
@@ -95,5 +98,37 @@ export const TableBody = styled.div`
         text-align: center;
       }
     }
+  }
+`;
+
+export const InputSearch = styled.div`
+  width: 250px;
+  height: 30px;
+  border-radius: 50px;
+  border: 1px solid #888888;
+  background-color: none;
+  padding: 10px;
+  display: flex;
+  height: 30px;
+  align-items: center;
+
+  @media (max-width: 760px) {
+    width: 100%;
+  }
+
+  input {
+    background: transparent;
+    color: ${({ theme }) => theme.colors.text};
+    width: 100%;
+    border: 0;
+  }
+
+  button {
+    color: ${({ theme }) => theme.colors.text};
+    display: flex;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    margin-left: 10px;
   }
 `;
