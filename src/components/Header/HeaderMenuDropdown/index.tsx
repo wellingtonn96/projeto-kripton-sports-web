@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { IconType } from 'react-icons/lib';
 
-import { Container } from './style';
-
 interface IPropsDropDown {
   Icon: IconType;
 }
@@ -20,7 +18,7 @@ const HeaderMenuDropDown: React.FC<IPropsDropDown> = ({ Icon, children }) => {
         onKeyPress={toggleDropDown}
         role="presentation"
       >
-        <Icon />
+        <Icon size={20} />
       </li>
       {showDropDown && <div>{children}</div>}
     </>

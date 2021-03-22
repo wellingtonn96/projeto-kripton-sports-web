@@ -21,7 +21,7 @@ export const Main = styled.main<IPropsMain>`
 `;
 
 export const Content = styled.div`
-  margin-top: 60px;
+  margin-top: 40px;
   padding: 20px;
 `;
 

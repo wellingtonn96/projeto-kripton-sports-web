@@ -1,7 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { FiSearch } from 'react-icons/fi';
 
-import { DataTable, TableHeader, TableBody } from './style';
+import { DataTable, TableHeader, TableBody, InputSearch } from './style';
 
 interface TableProps {
   header: string;
@@ -20,7 +21,12 @@ const Table: React.FC<TableProps> = ({ url, header, children }) => {
       <TableBody>
         <div>
           <div>
-            <input type="text" />
+            <InputSearch>
+              <input type="text" />
+              <button type="button">
+                <FiSearch />
+              </button>
+            </InputSearch>
           </div>
           <button type="button" onClick={() => history.push(url)}>
             cadastar
